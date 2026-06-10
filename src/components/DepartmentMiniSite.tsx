@@ -37,7 +37,7 @@ export default function DepartmentMiniSite({ d }: { d: Dept }) {
 
       <section style={{ padding: "60px 24px", maxWidth: 1100, margin: "0 auto" }}>
         <h2 style={{ fontSize: 30, fontWeight: 800, color: "#fff", marginBottom: 30, letterSpacing: "-0.01em" }}>What you get</h2>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16 }}>
+        <div className="bz-grid bz-grid-3">
           {d.outcomes.map((o) => (
             <div key={o} style={{ background: "#0e1119", border: "1px solid #1f2733", borderRadius: 14, padding: 22 }}>
               <div style={{ color: "#22c55e", fontSize: 22, marginBottom: 6 }}>✓</div>
@@ -95,7 +95,7 @@ export default function DepartmentMiniSite({ d }: { d: Dept }) {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div style={{ fontSize: 11, color: "#5fd3f3", letterSpacing: ".14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12, textAlign: "center" }}>The rest of the workforce</div>
           <h3 style={{ fontSize: 22, fontWeight: 700, color: "#fff", textAlign: "center", marginBottom: 22 }}>People who get {d.name} usually also need:</h3>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 14 }}>
+          <div className="bz-grid bz-grid-3" style={{ gap: 14 }}>
             {d.alsoBuy.map(slug => {
               const o = DEPTS[slug];
               if(!o) return null;

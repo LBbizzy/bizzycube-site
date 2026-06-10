@@ -28,3 +28,27 @@ html, body {
 }
 * { box-sizing: border-box; }
 a { color: inherit; text-decoration: none; }
+
+/* SYMMETRY GRID UTILITIES — explicit columns matched to item count */
+.bz-grid       { display: grid; gap: 16px; }
+.bz-grid-2     { grid-template-columns: repeat(2, 1fr); }
+.bz-grid-3     { grid-template-columns: repeat(3, 1fr); }
+.bz-grid-4     { grid-template-columns: repeat(4, 1fr); }
+.bz-grid-5     { grid-template-columns: repeat(5, 1fr); }
+
+@media (max-width: 1024px) {
+  .bz-grid-4, .bz-grid-5 { grid-template-columns: repeat(2, 1fr); }
+  .bz-grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .bz-grid-2, .bz-grid-3, .bz-grid-4, .bz-grid-5 { grid-template-columns: 1fr; }
+}
+
+/* Flex utility for navigation hide on narrow screens */
+@media (max-width: 900px) {
+  .bz-hide-on-mobile { display: none !important; }
+}
+
+@media (max-width: 768px) {
+  .bz-footer-grid { grid-template-columns: 1fr !important; }
+}

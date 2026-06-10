@@ -16,7 +16,7 @@ export default function Page() {
       </section>
 
       <section style={{ padding: "30px 24px 60px", maxWidth: 1200, margin: "0 auto" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))", gap: 18 }}>
+        <div className="bz-grid bz-grid-3" style={{ gap: 18 }}>
           {[
             { name: "Single department", price: `From $${min}/mo`, sub: "Pick any one department. Pay only for what you need.", features: ["Full department, standalone", "Weekly approval queue", "DJ orchestrator access", "Mobile + web app", "Cancel anytime"], cta: "/departments", ctaLabel: "Pick a department →", best: false },
             { name: "Bundle of 3", price: "Save 15%", sub: "Mix and match any 3 departments. Best for businesses with multiple gaps to close.", features: ["Any 3 departments", "Integrated workflow (lead → CRM → follow-up)", "Combined approval queue", "Weekly cross-dept digest", "Priority response"], cta: "/contact?cta=bundle", ctaLabel: "Build my bundle →", best: true },

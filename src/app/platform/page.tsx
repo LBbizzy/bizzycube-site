@@ -38,7 +38,7 @@ export default function PlatformPage() {
           <div style={{ textAlign: "center", marginBottom: 50 }}>
             <h2 style={{ fontSize: 38, fontWeight: 800, color: "#fff", margin: "0 0 16px", letterSpacing: "-0.01em" }}>How it works in your business</h2>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 18 }}>
+          <div className="bz-grid bz-grid-4" style={{ gap: 18 }}>
             {[
               { n: "01", t: "You talk to DJ", b: "DJ is your AI orchestrator — your single point of contact. Chat, voice, text, email. You don&apos;t manage nine AIs. You manage DJ. DJ runs everything else." },
               { n: "02", t: "DJ dispatches the workforce", b: "Need a campaign? Marketing strategist designs it. Writer drafts copy. Web department builds the page. Sales department wires the form. They coordinate in real time — no Slack channels, no meetings." },
@@ -80,7 +80,7 @@ export default function PlatformPage() {
               You don&apos;t have to buy all of them. Pick the ones you need. Add more anytime. Each works alone — and works better with the others.
             </p>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 14 }}>
+          <div className="bz-grid bz-grid-3" style={{ gap: 14 }}>
             {DEPT_ORDER.map(slug => {
               const d = DEPTS[slug];
               return (

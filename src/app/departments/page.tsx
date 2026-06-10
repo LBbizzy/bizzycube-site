@@ -19,7 +19,7 @@ export default function DepartmentsPage() {
           <div style={{ marginBottom: 20 }}>
             <div style={{ fontSize: 28, fontWeight: 800, color: "#fff", letterSpacing: "-0.01em" }}>{c.emoji} {c.name}</div>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16 }}>
+          <div className="bz-grid bz-grid-3">
             {c.depts.map(slug => {
               const d = DEPTS[slug];
               return (

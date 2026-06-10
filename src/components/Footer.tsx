@@ -5,7 +5,7 @@ import { DEPTS, DEPT_ORDER } from "@/lib/departments";
 export default function Footer() {
   return (
     <footer style={{ borderTop: "1px solid #1f2733", marginTop: 0, padding: "60px 24px 32px", background: "#0a0d14" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 32 }}>
+      <div className="bz-footer-grid" style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: 32 }}>
         <div>
           <Logo />
           <p style={{ color: "#94a3b8", fontSize: 13, marginTop: 14, lineHeight: 1.6, maxWidth: 320 }}>

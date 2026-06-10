@@ -43,7 +43,7 @@ export default function HomePage() {
             Start with one. Add more when you&apos;re ready. Every part of BizzyCube works on its own — and works better with the others.
           </p>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 16 }}>
+        <div className="bz-grid bz-grid-3">
           {CATEGORIES.map(c => {
             const firstDept = DEPTS[c.depts[0]];
             return (
@@ -82,7 +82,7 @@ export default function HomePage() {
           </p>
         </div>
         <div style={{ background: "#0e1119", border: "1px solid #1f2733", borderRadius: 16, padding: 36 }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 24 }}>
+          <div className="bz-grid bz-grid-4" style={{ gap: 24 }}>
             {[
               ["30", "days to live"],
               ["6", "channels active"],

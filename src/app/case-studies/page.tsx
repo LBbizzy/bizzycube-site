@@ -21,7 +21,7 @@ export default function Page() {
           <p style={{ fontSize: 15, color: "#cbd5e1", lineHeight: 1.7, marginBottom: 22 }}>
             Crest Air came to us with no website that was converting, a Facebook page that hadn&apos;t been posted to in 4 months, and a Google Business Profile that was outranked by every Tucson competitor. The owner answered the phone himself between jobs.
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 18, marginBottom: 22 }}>
+          <div className="bz-grid bz-grid-4" style={{ gap: 18, marginBottom: 22 }}>
             {[["30", "days to live"], ["6", "channels active"], ["3/week", "content drafts"], ["< 90s", "lead → owner"]].map(s => (
               <div key={s[1] as string}>
                 <div style={{ fontSize: 32, fontWeight: 800, color: "#5fd3f3" }}>{s[0]}</div>

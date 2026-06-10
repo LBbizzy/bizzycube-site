@@ -208,8 +208,7 @@ export const DEPTS: Record<string, Dept> = {
 export const DEPT_ORDER = ["marketing", "advertising", "social-media", "content", "web", "sales-crm", "ai-receptionist", "accounting", "onboarding"];
 
 export const CATEGORIES = [
-  { name: "Get more leads", emoji: "🎯", depts: ["marketing", "advertising"] },
-  { name: "Show up online", emoji: "📱", depts: ["social-media", "content", "web"] },
-  { name: "Convert + keep customers", emoji: "💬", depts: ["sales-crm", "ai-receptionist", "onboarding"] },
-  { name: "Run the back office", emoji: "📊", depts: ["accounting"] },
+  { name: "Bring in more business", emoji: "🎯", depts: ["marketing", "advertising", "social-media"] },
+  { name: "Convert + keep customers", emoji: "💬", depts: ["web", "content", "ai-receptionist"] },
+  { name: "Run your operation", emoji: "⚙️", depts: ["sales-crm", "onboarding", "accounting"] },
 ];
