@@ -2,10 +2,10 @@ import Link from "next/link";
 import Logo from "./Logo";
 
 const NAV = [
-  { href: "/how-it-works", label: "How it works" },
+  { href: "/platform", label: "How it works" },
+  { href: "/departments", label: "Departments" },
   { href: "/pricing", label: "Pricing" },
   { href: "/case-studies", label: "Case studies" },
-  { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
 

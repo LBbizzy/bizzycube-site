@@ -5,12 +5,12 @@ import Footer from "@/components/Footer";
 import DJChatBubble from "@/components/DJChatBubble";
 
 export const metadata: Metadata = {
-  title: "BizzyCube — AI marketing automation for small businesses",
-  description: "Hire one AI team that runs your marketing, content, leads, and follow-up — for less than the cost of one part-time employee. Built on the War Room platform.",
+  title: "BizzyCube — Hire one AI workforce. Replace ten specialists.",
+  description: "BizzyCube is the AI workforce for small business. One team that runs marketing, sales, web, accounting, social, and everything else. Less than one part-time hire.",
   metadataBase: new URL("https://bizzycube.com"),
   openGraph: {
-    title: "BizzyCube — AI marketing for small businesses",
-    description: "One AI team. Every channel. Less than one part-time hire.",
+    title: "BizzyCube — The AI workforce for small business",
+    description: "Hire one AI workforce. Replace ten specialists. Less than one part-time hire.",
     url: "https://bizzycube.com",
     siteName: "BizzyCube",
     type: "website",
