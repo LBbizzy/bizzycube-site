@@ -50,8 +50,12 @@ export default function SignupPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setErr(null);
-    if (!name.trim() || !email.trim() || !company.trim() || password.length < 8) {
-      setErr("Fill in all fields. Password must be at least 8 characters.");
+    if (!name.trim() || !email.trim() || !company.trim()) {
+      setErr("Fill in all fields.");
+      return;
+    }
+    if (password.length < 10 || !/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password)) {
+      setErr("Password must be at least 10 characters and include uppercase, lowercase, and a number.");
       return;
     }
     setBusy(true);
@@ -180,7 +184,7 @@ export default function SignupPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 type={showPw ? "text" : "password"}
-                placeholder="At least 8 characters"
+                placeholder="At least 10 characters, with uppercase, lowercase, number"
                 autoComplete="new-password"
                 style={inputStyle}
               />
