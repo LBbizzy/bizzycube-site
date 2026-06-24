@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SMS Sign-Up — BizzyCube</title>
+<style>
+body{font-family:system-ui,-apple-system,sans-serif;max-width:560px;margin:40px auto;padding:24px;color:#1a1a1a;line-height:1.6;background:#f6f9fc}
+.card{background:#fff;border-radius:12px;padding:28px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+h1{color:#1E3A8A;font-size:24px;margin:0 0 8px}
+.sub{color:#666;margin-bottom:24px;font-size:14px}
+label{display:block;margin:14px 0 6px;font-weight:600;font-size:14px;color:#333}
+input[type=text],input[type=tel],input[type=email]{width:100%;padding:10px 12px;border:1px solid #d0d7de;border-radius:8px;font-size:15px;box-sizing:border-box}
+.consent-box{margin-top:24px;padding:16px;background:#f6f9fc;border-radius:8px;border:1px solid #d0d7de}
+.consent-row{display:flex;gap:10px;align-items:flex-start}
+.consent-row input[type=checkbox]{margin-top:3px;width:18px;height:18px;flex-shrink:0;cursor:pointer}
+.consent-row label{margin:0;font-weight:400;font-size:13px;color:#444;cursor:pointer}
+button{margin-top:20px;width:100%;background:#1E3A8A;color:#fff;border:0;padding:13px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer}
+button:hover{background:#1d4ed8}
+a{color:#1E3A8A}
+.success{display:none;background:#d1fae5;border:1px solid #10b981;padding:16px;border-radius:8px;margin-top:20px;color:#065f46}
+.note{font-size:12px;color:#666;margin-top:20px;padding-top:16px;border-top:1px solid #e5e7eb}
+</style></head>
+<body>
+<div class="card">
+<h1>Sign up for SMS updates</h1>
+<p class="sub">Stay in the loop on your BizzyCube or client appointment. Optional &mdash; only if you want it.</p>
+
+<form id="form" onsubmit="handleSubmit(event)">
+<label for="name">Your name</label>
+<input type="text" id="name" name="name" required>
+
+<label for="phone">Mobile phone number</label>
+<input type="tel" id="phone" name="phone" required placeholder="+1 (555) 555-5555">
+
+<label for="email">Email <span style="color:#999;font-weight:400">(optional)</span></label>
+<input type="email" id="email" name="email">
+
+<div class="consent-box">
+<div class="consent-row">
+<input type="checkbox" id="sms_consent" name="sms_consent">
+<label for="sms_consent">
+<strong>I agree to receive SMS messages from BizzyCube and its agency clients (such as Universal Roofing LLC or Crest Air LLC) about appointment confirmations, appointment reminders the day before and 2 hours before scheduled service, and customer-service replies to questions I send.</strong>
+<br><br>
+Message frequency varies based on my interactions; typically 2&ndash;5 messages per appointment. Message and data rates may apply. I can reply STOP at any time to opt out, or HELP for more info.
+<br><br>
+I understand SMS consent is <strong>NOT required</strong> to receive any service or product. By checking this box, I confirm I am opting in to receive SMS at the phone number I provided above.
+<br><br>
+<a href="/sms-terms.html" target="_blank">SMS Terms &amp; Conditions</a> &middot; <a href="/sms-privacy.html" target="_blank">SMS Privacy Policy</a>
+</label>
+</div>
+</div>
+
+<button type="submit">Sign me up</button>
+</form>
+
+<div id="success" class="success">
+<strong>You're signed up.</strong> You'll receive a confirmation text in a moment.<br>
+Reply STOP at any time to opt out, HELP for info.
+</div>
+
+<p class="note">
+<strong>Why this form?</strong> Some BizzyCube agency clients (Universal Roofing, Crest Air, etc.) use SMS for appointment confirmations and reminders. If you'd like to receive those texts about a service you booked, sign up here. Otherwise, you can complete any service with us by phone or email without ever giving SMS consent. SMS consent is never a condition of receiving service.
+</p>
+</div>
+
+<script>
+async function handleSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const data = {
+    name:       form.name.value,
+    phone:      form.phone.value,
+    email:      form.email.value,
+    sms_consent: form.sms_consent.checked,
+    submitted_at: new Date().toISOString(),
+    source: 'bizzycube.com/sms-signup.html'
+  };
+  try {
+    const r = await fetch('https://h5k2aqy3lf.execute-api.us-west-2.amazonaws.com/sms/optin-form', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(data)
+    });
+    if (r.ok) {
+      form.style.display = 'none';
+      document.getElementById('success').style.display = 'block';
+    } else {
+      alert('Submission failed. Please try again or call us at (520) 724-0000.');
+    }
+  } catch(err) {
+    alert('Submission failed. Please try again or call us at (520) 724-0000.');
+  }
+}
+</script>
+
+</body></html>
