@@ -37,7 +37,11 @@ export default function Footer() {
       </div>
       <div style={{ maxWidth: 1200, margin: "32px auto 0", paddingTop: 24, borderTop: "1px solid #1f2733", display: "flex", justifyContent: "space-between", fontSize: 11, color: "#64748b" }}>
         <span>© 2026 BizzyCube. Built by the BizzyCube AI workforce.</span>
-        <span>bizzycube.com</span>
+        <span style={{ display: "flex", gap: 16 }}>
+          <Link href="/privacy">Privacy Policy</Link>
+          <Link href="/terms">Terms of Service</Link>
+          <span>bizzycube.com</span>
+        </span>
       </div>
     </footer>
   );
