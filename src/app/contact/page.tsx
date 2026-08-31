@@ -11,9 +11,21 @@ export default function Page() {
       </section>
 
       <section style={{ padding: "20px 24px 60px", maxWidth: 640, margin: "0 auto" }}>
-        <form action="https://xmm5f2kayl.execute-api.us-west-2.amazonaws.com/leads/capture" method="POST" style={{ background: "#0e1119", border: "1px solid #1f2733", borderRadius: 14, padding: 28 }}>
-          <input type="hidden" name="company_id" value="bizzycube" />
-          <input type="hidden" name="source" value="bizzycube-site-contact" />
+        {/* THIS FORM USED TO GO NOWHERE.
+            It posted to the old stack's /leads/capture, which requires an
+            x-lead-key header a plain HTML form cannot send, so every
+            submission came back 401 and was discarded in silence — no row
+            in any table, and a visitor who saw no error. It now posts to
+            the War Room's own lead door, which screens it, matches or
+            creates the contact, writes the note and the activity line, and
+            answers with a thank-you page.
+
+            `t` is the signed token naming the company and this site. It is
+            not a secret worth hiding — it can only ever create a lead for
+            BizzyCube — but it cannot be forged, so nobody can point their
+            own form at your Rolodex. */}
+        <form action="https://dztu1141o7.execute-api.us-west-2.amazonaws.com/lead/submit" method="POST" style={{ background: "#0e1119", border: "1px solid #1f2733", borderRadius: 14, padding: 28 }}>
+          <input type="hidden" name="t" value="d3NpdGV8Yml6enljdWJlfHdzX2Jpenp5Y3ViZXNpdGV8cHVi.WdDN_E3h_D11Drw1xTlhi2bHnTeBZz0J" />
           {[
             ["name", "Your name", "text", true],
             ["phone", "Phone", "tel", true],
