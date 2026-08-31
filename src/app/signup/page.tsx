@@ -29,7 +29,11 @@ const PLANS: Record<Plan, { name: string; monthly: number; annual: number; tagli
   },
 };
 
-const API = "https://api.warroom.lmbhub.com";
+const LEAD_DOOR =
+  "https://dztu1141o7.execute-api.us-west-2.amazonaws.com/lead/submit";
+const SITE_TOKEN =
+  "d3NpdGV8Yml6enljdWJlfHdzX2Jpenp5Y3ViZXNpdGV8cHVi.WdDN_E3h_D11Drw1xTlhi2bHnTeBZz0J";
+const APP = "https://app.bizzycube.com";
 
 export default function SignupPage() {
   const [plan, setPlan] = useState<Plan>("bundle_of_3");
@@ -37,9 +41,8 @@ export default function SignupPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPw, setShowPw] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [done, setDone] = useState(false);
   const [err, setErr] = useState<string | null>(null);
 
   const planDef = PLANS[plan];
@@ -54,36 +57,55 @@ export default function SignupPage() {
       setErr("Fill in all fields.");
       return;
     }
-    if (password.length < 10 || !/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/[0-9]/.test(password)) {
-      setErr("Password must be at least 10 characters and include uppercase, lowercase, and a number.");
-      return;
-    }
     setBusy(true);
     try {
-      const r = await fetch(`${API}/public/signup`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          plan,
-          cycle,
-          name: name.trim(),
-          email: email.trim().toLowerCase(),
-          company: company.trim(),
-          password,
-          success_url: `${window.location.origin}/signup/welcome?session_id={CHECKOUT_SESSION_ID}`,
-          cancel_url: `${window.location.origin}/signup?canceled=1`,
-        }),
+      // Posted as a form encoding because that is what the lead door
+      // speaks — the same door the contact form uses, so a signup request
+      // lands in the Rolodex beside every other lead instead of in a
+      // separate pile nobody watches.
+      const body = new URLSearchParams({
+        t: SITE_TOKEN,
+        name: name.trim(),
+        email: email.trim().toLowerCase(),
+        business: company.trim(),
+        message:
+          `Wants an account. Plan: ${planDef.name} (${cycle}), ` +
+          `${priceLabel}.`,
       });
-      const data = await r.json();
-      if (!r.ok || !data.checkout_url) {
-        throw new Error(data.error || `Signup failed (${r.status})`);
-      }
-      window.location.href = data.checkout_url;
+      const r = await fetch(LEAD_DOOR, {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body,
+      });
+      if (!r.ok) throw new Error(`That didn't send (${r.status}).`);
+      setDone(true);
     } catch (e: unknown) {
-      const msg = e instanceof Error ? e.message : "Something went wrong.";
-      setErr(msg);
+      setErr(e instanceof Error ? e.message : "Something went wrong.");
+    } finally {
       setBusy(false);
     }
+  }
+
+  if (done) {
+    return (
+      <main style={{ minHeight: "100vh", background: "#0a0d14", color: "#fff" }}>
+        <section style={{ maxWidth: 620, margin: "0 auto",
+                          padding: "110px 24px", textAlign: "center" }}>
+          <div style={{ fontSize: 11, color: "#B2D235", letterSpacing: ".14em",
+                        textTransform: "uppercase", fontWeight: 700,
+                        marginBottom: 14 }}>Got it</div>
+          <h1 style={{ fontSize: 40, fontWeight: 800, letterSpacing: "-0.025em",
+                       lineHeight: 1.1, margin: "0 0 16px" }}>
+            We&apos;ll be in touch today.
+          </h1>
+          <p style={{ fontSize: 16.5, color: "#cbd5e1", lineHeight: 1.65 }}>
+            Your request is in — {planDef.name}, {priceLabel}. We&apos;ll
+            reach out to get your workspace set up. Nothing is charged until
+            you&apos;ve seen it working.
+          </p>
+        </section>
+      </main>
+    );
   }
 
   return (
@@ -92,7 +114,7 @@ export default function SignupPage() {
         <div style={{ fontSize: 11, color: "#B2D235", letterSpacing: ".14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>Sign up</div>
         <h1 style={{ fontSize: 44, fontWeight: 800, color: "#fff", letterSpacing: "-0.025em", lineHeight: 1.05, margin: "0 0 14px" }}>Start your BizzyCube workforce.</h1>
         <p style={{ fontSize: 17, color: "#cbd5e1", lineHeight: 1.6, maxWidth: 640, margin: "0 auto" }}>
-          Pick a plan, create your account, pay through Stripe. You&apos;re running 10 minutes from now.
+          Pick the plan that fits. Tell us who you are. We set your workspace up with you on a short call, so the tools are switched on for how your business actually runs \u2014 not left as a pile of settings.
         </p>
       </section>
 
@@ -178,25 +200,18 @@ export default function SignupPage() {
             <Field label="Work email" value={email} onChange={setEmail} type="email" placeholder="you@yourcompany.com" />
             <Field label="Company name" value={company} onChange={setCompany} placeholder="Acme Co." />
 
-            <label style={{ display: "block", fontSize: 12, color: "#94a3b8", marginBottom: 6, marginTop: 14 }}>Password (you&apos;ll use this to log in to lmbhub.com)</label>
-            <div style={{ position: "relative" }}>
-              <input
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                type={showPw ? "text" : "password"}
-                placeholder="At least 10 characters, with uppercase, lowercase, number"
-                autoComplete="new-password"
-                style={inputStyle}
-              />
-              <button
-                type="button"
-                onClick={() => setShowPw((s) => !s)}
-                style={{ position: "absolute", right: 10, top: 9, background: "transparent", border: "none", color: "#94a3b8", fontSize: 12, cursor: "pointer" }}
-              >
-                {showPw ? "Hide" : "Show"}
-              </button>
-            </div>
+            {/* NO PASSWORD FIELD, DELIBERATELY.
+                This form used to ask for one and POST it in plain JSON to
+                the old stack's /public/signup — which answers 401, so the
+                password was collected and thrown away while the visitor
+                was told "Signup failed". People reuse passwords; a form
+                that harvests one and discards it is worse than a form that
+                never asks.
 
+                The platform does not work that way either: a login is
+                created through Cognito, which emails its own invite and
+                takes the password directly from the person. BizzyCube
+                never sees it and no BizzyCube page ever asks for it. */}
             {err && (
               <div style={{ background: "#3b1212", border: "1px solid #7f1d1d", color: "#fecaca", padding: "10px 12px", borderRadius: 9, marginTop: 14, fontSize: 13 }}>
                 {err}
@@ -224,7 +239,7 @@ export default function SignupPage() {
 
             <div style={{ fontSize: 12, color: "#64748b", textAlign: "center", marginTop: 14, lineHeight: 1.5 }}>
               Secured by Stripe. Cancel anytime from your account. <br />
-              Already have an account? <a href="https://lmbhub.com" style={{ color: "#B2D235" }}>Sign in</a>.
+              Already have an account? <a href={APP} style={{ color: "#B2D235" }}>Sign in</a>.
             </div>
           </form>
         </div>
