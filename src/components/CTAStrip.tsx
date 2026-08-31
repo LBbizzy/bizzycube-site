@@ -5,7 +5,7 @@ export default function CTAStrip({ title = "See how BizzyCube would run your bus
       <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
         <h2 style={{ fontSize: 32, fontWeight: 800, color: "#fff", margin: "0 0 14px", letterSpacing: "-0.01em" }}>{title}</h2>
         <p style={{ fontSize: 16, color: "#cbd5e1", lineHeight: 1.6, margin: "0 0 26px" }}>{sub}</p>
-        <Link href="/contact?cta=demo" style={{ display: "inline-block", background: "#2563eb", color: "#fff", padding: "14px 32px", borderRadius: 10, fontSize: 15, fontWeight: 700 }}>
+        <Link href="/contact?cta=demo" style={{ display: "inline-block", background: "#483A84", color: "#fff", padding: "14px 32px", borderRadius: 10, fontSize: 15, fontWeight: 700 }}>
           Book a 15-min demo →
         </Link>
       </div>

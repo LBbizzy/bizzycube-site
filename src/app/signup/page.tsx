@@ -89,7 +89,7 @@ export default function SignupPage() {
   return (
     <main style={{ minHeight: "100vh", background: "#0a0d14", color: "#fff" }}>
       <section style={{ padding: "60px 24px 24px", maxWidth: 1100, margin: "0 auto", textAlign: "center" }}>
-        <div style={{ fontSize: 11, color: "#5fd3f3", letterSpacing: ".14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>Sign up</div>
+        <div style={{ fontSize: 11, color: "#B2D235", letterSpacing: ".14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>Sign up</div>
         <h1 style={{ fontSize: 44, fontWeight: 800, color: "#fff", letterSpacing: "-0.025em", lineHeight: 1.05, margin: "0 0 14px" }}>Start your BizzyCube workforce.</h1>
         <p style={{ fontSize: 17, color: "#cbd5e1", lineHeight: 1.6, maxWidth: 640, margin: "0 auto" }}>
           Pick a plan, create your account, pay through Stripe. You&apos;re running 10 minutes from now.
@@ -106,7 +106,7 @@ export default function SignupPage() {
                 type="button"
                 onClick={() => setCycle(c)}
                 style={{
-                  background: cycle === c ? "#2563eb" : "transparent",
+                  background: cycle === c ? "#483A84" : "transparent",
                   color: "#fff",
                   border: "none",
                   padding: "10px 20px",
@@ -137,7 +137,7 @@ export default function SignupPage() {
                   style={{
                     textAlign: "left",
                     background: active ? "linear-gradient(180deg, rgba(83, 74, 183, 0.18), #0e1119)" : "#0e1119",
-                    border: active ? "2px solid #2563eb" : "1px solid #1f2733",
+                    border: active ? "2px solid #483A84" : "1px solid #1f2733",
                     borderRadius: 14,
                     padding: 22,
                     cursor: "pointer",
@@ -146,7 +146,7 @@ export default function SignupPage() {
                   }}
                 >
                   {best && (
-                    <div style={{ position: "absolute", top: -10, left: 18, background: "#2563eb", color: "#fff", padding: "3px 10px", borderRadius: 6, fontSize: 10, fontWeight: 700, letterSpacing: ".06em" }}>
+                    <div style={{ position: "absolute", top: -10, left: 18, background: "#483A84", color: "#fff", padding: "3px 10px", borderRadius: 6, fontSize: 10, fontWeight: 700, letterSpacing: ".06em" }}>
                       MOST POPULAR
                     </div>
                   )}
@@ -170,8 +170,8 @@ export default function SignupPage() {
           <form onSubmit={handleSubmit} style={{ background: "#0e1119", border: "1px solid #1f2733", borderRadius: 14, padding: 28, maxWidth: 640, margin: "0 auto", width: "100%" }}>
             <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 4 }}>Your account</div>
             <div style={{ fontSize: 13, color: "#94a3b8", marginBottom: 22 }}>
-              {planDef.name} · <span style={{ color: "#5fd3f3", fontWeight: 600 }}>{priceLabel}</span>
-              {annualSave > 0 && <span style={{ marginLeft: 8, color: "#22c55e" }}>save {annualSave}%</span>}
+              {planDef.name} · <span style={{ color: "#B2D235", fontWeight: 600 }}>{priceLabel}</span>
+              {annualSave > 0 && <span style={{ marginLeft: 8, color: "#B2D235" }}>save {annualSave}%</span>}
             </div>
 
             <Field label="Your name" value={name} onChange={setName} placeholder="Jordan Smith" />
@@ -209,7 +209,7 @@ export default function SignupPage() {
               style={{
                 width: "100%",
                 marginTop: 22,
-                background: busy ? "#1f2733" : "#2563eb",
+                background: busy ? "#1f2733" : "#483A84",
                 color: "#fff",
                 border: "none",
                 padding: "14px 16px",
@@ -224,7 +224,7 @@ export default function SignupPage() {
 
             <div style={{ fontSize: 12, color: "#64748b", textAlign: "center", marginTop: 14, lineHeight: 1.5 }}>
               Secured by Stripe. Cancel anytime from your account. <br />
-              Already have an account? <a href="https://lmbhub.com" style={{ color: "#5fd3f3" }}>Sign in</a>.
+              Already have an account? <a href="https://lmbhub.com" style={{ color: "#B2D235" }}>Sign in</a>.
             </div>
           </form>
         </div>

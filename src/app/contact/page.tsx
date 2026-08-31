@@ -3,7 +3,7 @@ export default function Page() {
   return (
     <>
       <section style={{ padding: "70px 24px 40px", maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
-        <div style={{ fontSize: 11, color: "#5fd3f3", letterSpacing: ".14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>Contact</div>
+        <div style={{ fontSize: 11, color: "#B2D235", letterSpacing: ".14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>Contact</div>
         <h1 style={{ fontSize: 50, fontWeight: 800, color: "#fff", letterSpacing: "-0.025em", lineHeight: 1.1, margin: "0 0 18px" }}>Book a 15-min mapping call.</h1>
         <p style={{ fontSize: 17, color: "#cbd5e1", lineHeight: 1.6 }}>
           We map your funnel live. No prep, no pitch. You leave with a real diagnosis — even if you don&apos;t hire us.
@@ -41,7 +41,7 @@ export default function Page() {
             <label style={{ display: "block", fontSize: 13, color: "#cbd5e1", marginBottom: 6, fontWeight: 500 }}>What&apos;s the #1 thing you&apos;d fix? (optional)</label>
             <textarea name="message" rows={3} style={{ width: "100%", background: "#0a0d14", border: "1px solid #2c333f", color: "#fff", padding: "11px 14px", borderRadius: 8, fontSize: 14, fontFamily: "inherit" }} />
           </div>
-          <button type="submit" style={{ width: "100%", background: "#2563eb", color: "#fff", border: "none", padding: "14px 24px", borderRadius: 10, fontSize: 15, fontWeight: 700, cursor: "pointer" }}>
+          <button type="submit" style={{ width: "100%", background: "#483A84", color: "#fff", border: "none", padding: "14px 24px", borderRadius: 10, fontSize: 15, fontWeight: 700, cursor: "pointer" }}>
             Send → DJ will book you in &lt;1 business hour
           </button>
           <div style={{ marginTop: 14, fontSize: 11, color: "#64748b", textAlign: "center" }}>

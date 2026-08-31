@@ -7,7 +7,7 @@ export default function PlatformPage() {
   return (
     <>
       <section style={{ padding: "90px 24px 50px", maxWidth: 1100, margin: "0 auto", textAlign: "center" }}>
-        <div style={{ fontSize: 11, color: "#5fd3f3", letterSpacing: ".14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>
+        <div style={{ fontSize: 11, color: "#B2D235", letterSpacing: ".14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>
           The BizzyCube platform
         </div>
         <h1 style={{ fontSize: 60, fontWeight: 800, color: "#fff", letterSpacing: "-0.025em", lineHeight: 1.05, margin: "0 0 22px", maxWidth: 900, marginLeft: "auto", marginRight: "auto" }}>
@@ -46,7 +46,7 @@ export default function PlatformPage() {
               { n: "04", t: "Weekly digest. Everything visible.", b: "Monday morning: what your AI workforce did last week, what they&apos;re planning this week, what leads came in, what to decide, what to celebrate. 5-minute read." },
             ].map(s => (
               <div key={s.n} style={{ background: "#0e1119", border: "1px solid #1f2733", borderRadius: 14, padding: 26 }}>
-                <div style={{ fontSize: 36, fontWeight: 800, color: "#534AB7", letterSpacing: "-0.02em" }}>{s.n}</div>
+                <div style={{ fontSize: 36, fontWeight: 800, color: "#483A84", letterSpacing: "-0.02em" }}>{s.n}</div>
                 <div style={{ fontSize: 18, fontWeight: 700, color: "#fff", margin: "8px 0" }}>{s.t}</div>
                 <div style={{ fontSize: 13.5, color: "#94a3b8", lineHeight: 1.6 }} dangerouslySetInnerHTML={{ __html: s.b }} />
               </div>
@@ -88,7 +88,7 @@ export default function PlatformPage() {
                   <div style={{ fontSize: 26, marginBottom: 8 }}>{d.emoji}</div>
                   <div style={{ fontSize: 15, fontWeight: 700, color: "#fff", marginBottom: 6 }}>{d.name}</div>
                   <div style={{ fontSize: 12, color: "#94a3b8", lineHeight: 1.5 }}>{d.tagline.slice(0, 75)}...</div>
-                  <div style={{ marginTop: 10, fontSize: 12, color: "#5fd3f3" }}>Explore →</div>
+                  <div style={{ marginTop: 10, fontSize: 12, color: "#B2D235" }}>Explore →</div>
                 </Link>
               );
             })}
@@ -100,7 +100,7 @@ export default function PlatformPage() {
         <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
           <h2 style={{ fontSize: 34, fontWeight: 800, color: "#fff", margin: "0 0 16px", letterSpacing: "-0.01em" }}>Want to see what your AI workforce would look like?</h2>
           <p style={{ fontSize: 16, color: "#cbd5e1", margin: "0 0 26px", lineHeight: 1.6 }}>15 minutes. We map your business. You leave with a real plan — even if you don&apos;t hire us.</p>
-          <Link href="/contact?cta=demo" style={{ display: "inline-block", background: "#2563eb", color: "#fff", padding: "16px 36px", borderRadius: 11, fontSize: 15, fontWeight: 700 }}>
+          <Link href="/contact?cta=demo" style={{ display: "inline-block", background: "#483A84", color: "#fff", padding: "16px 36px", borderRadius: 11, fontSize: 15, fontWeight: 700 }}>
             Book a 15-min demo →
           </Link>
         </div>

@@ -4,7 +4,7 @@ export default function Page() {
   return (
     <>
       <section style={{ padding: "80px 24px 40px", maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
-        <div style={{ fontSize: 11, color: "#5fd3f3", letterSpacing: ".14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>About</div>
+        <div style={{ fontSize: 11, color: "#B2D235", letterSpacing: ".14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 14 }}>About</div>
         <h1 style={{ fontSize: 52, fontWeight: 800, color: "#fff", letterSpacing: "-0.025em", lineHeight: 1.1, margin: "0 0 22px" }}>We built BizzyCube because small business deserves a fair fight.</h1>
         <p style={{ fontSize: 18, color: "#cbd5e1", lineHeight: 1.7 }}>
           Enterprise has 200-person marketing teams. Small business has the owner, two part-timers, and a Wix subscription. BizzyCube closes the gap.
@@ -33,7 +33,7 @@ export default function Page() {
             <li>✗ Not a SaaS platform with 100 features you&apos;ll never use</li>
             <li>✗ Not a consultant who shows up for 30 days and disappears</li>
           </ul>
-          <h3 style={{ fontSize: 17, fontWeight: 700, color: "#22c55e", margin: "20px 0 8px" }}>What we ARE</h3>
+          <h3 style={{ fontSize: 17, fontWeight: 700, color: "#B2D235", margin: "20px 0 8px" }}>What we ARE</h3>
           <p style={{ fontSize: 15, color: "#cbd5e1", lineHeight: 1.7, margin: 0 }}>
             An AI workforce. We do the work. You approve and ship. We integrate with each other. We never quit. We don&apos;t take vacation. And we cost less than one part-time hire.
           </p>
@@ -42,7 +42,7 @@ export default function Page() {
 
       <section style={{ background: "linear-gradient(135deg, #1e1b4b 0%, #0e1119 100%)", padding: "70px 24px" }}>
         <div style={{ maxWidth: 700, margin: "0 auto", textAlign: "center" }}>
-          <Link href="/contact?cta=demo" style={{ display: "inline-block", background: "#2563eb", color: "#fff", padding: "15px 30px", borderRadius: 11, fontSize: 15, fontWeight: 700 }}>
+          <Link href="/contact?cta=demo" style={{ display: "inline-block", background: "#483A84", color: "#fff", padding: "15px 30px", borderRadius: 11, fontSize: 15, fontWeight: 700 }}>
             Book a 15-min demo →
           </Link>
         </div>

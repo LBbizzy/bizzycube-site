@@ -5,7 +5,7 @@ export default function Page() {
   return (
     <>
       <section style={{ padding: "70px 24px 40px", maxWidth: 1000, margin: "0 auto", textAlign: "center" }}>
-        <div style={{ fontSize: 11, color: "#5fd3f3", letterSpacing: ".14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>Case studies</div>
+        <div style={{ fontSize: 11, color: "#B2D235", letterSpacing: ".14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>Case studies</div>
         <h1 style={{ fontSize: 50, fontWeight: 800, color: "#fff", letterSpacing: "-0.025em", lineHeight: 1.1, margin: "0 0 18px" }}>Real businesses. Real outcomes.</h1>
       </section>
 
@@ -24,18 +24,18 @@ export default function Page() {
           <div className="bz-grid bz-grid-4" style={{ gap: 18, marginBottom: 22 }}>
             {[["30", "days to live"], ["6", "channels active"], ["3/week", "content drafts"], ["< 90s", "lead → owner"]].map(s => (
               <div key={s[1] as string}>
-                <div style={{ fontSize: 32, fontWeight: 800, color: "#5fd3f3" }}>{s[0]}</div>
+                <div style={{ fontSize: 32, fontWeight: 800, color: "#B2D235" }}>{s[0]}</div>
                 <div style={{ fontSize: 12, color: "#94a3b8", marginTop: 2 }}>{s[1]}</div>
               </div>
             ))}
           </div>
-          <div style={{ fontSize: 13, color: "#cbd5e1", borderLeft: "3px solid #22c55e", padding: "8px 14px", background: "#0a0d14", borderRadius: 6 }}>
+          <div style={{ fontSize: 13, color: "#cbd5e1", borderLeft: "3px solid #B2D235", padding: "8px 14px", background: "#0a0d14", borderRadius: 6 }}>
             &quot;Phone&apos;s ringing again. That&apos;s the whole report.&quot; — Owner, Crest Air
           </div>
         </div>
 
         <div style={{ marginTop: 24, textAlign: "center", color: "#94a3b8", fontSize: 13 }}>
-          More case studies shipping soon — restaurants, salons, consultants. <Link href="/contact?cta=case-study" style={{ color: "#5fd3f3" }}>Want to be next? →</Link>
+          More case studies shipping soon — restaurants, salons, consultants. <Link href="/contact?cta=case-study" style={{ color: "#B2D235" }}>Want to be next? →</Link>
         </div>
       </section>
 

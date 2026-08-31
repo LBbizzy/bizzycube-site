@@ -57,7 +57,7 @@ function WelcomeInner() {
             </p>
             <a
               href="https://lmbhub.com"
-              style={{ display: "inline-block", background: "#2563eb", color: "#fff", padding: "13px 24px", borderRadius: 10, fontSize: 14, fontWeight: 700, textDecoration: "none" }}
+              style={{ display: "inline-block", background: "#483A84", color: "#fff", padding: "13px 24px", borderRadius: 10, fontSize: 14, fontWeight: 700, textDecoration: "none" }}
             >
               Go to lmbhub.com →
             </a>
@@ -73,7 +73,7 @@ function WelcomeInner() {
             </p>
             <a
               href="https://lmbhub.com"
-              style={{ display: "inline-block", background: "#2563eb", color: "#fff", padding: "14px 28px", borderRadius: 10, fontSize: 15, fontWeight: 700, textDecoration: "none" }}
+              style={{ display: "inline-block", background: "#483A84", color: "#fff", padding: "14px 28px", borderRadius: 10, fontSize: 15, fontWeight: 700, textDecoration: "none" }}
             >
               Sign in → lmbhub.com
             </a>

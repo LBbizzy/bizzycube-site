@@ -13,7 +13,7 @@ export default function Footer() {
           </p>
         </div>
         <div>
-          <div style={{ fontSize: 11, color: "#5fd3f3", textTransform: "uppercase", letterSpacing: ".1em", fontWeight: 700, marginBottom: 12 }}>BizzyCube</div>
+          <div style={{ fontSize: 11, color: "#B2D235", textTransform: "uppercase", letterSpacing: ".1em", fontWeight: 700, marginBottom: 12 }}>BizzyCube</div>
           <ul style={{ listStyle: "none", padding: 0, margin: 0, lineHeight: 2, fontSize: 13, color: "#cbd5e1" }}>
             <li><Link href="/platform">How it works</Link></li>
             <li><Link href="/pricing">Pricing</Link></li>
@@ -22,15 +22,15 @@ export default function Footer() {
           </ul>
         </div>
         <div>
-          <div style={{ fontSize: 11, color: "#5fd3f3", textTransform: "uppercase", letterSpacing: ".1em", fontWeight: 700, marginBottom: 12 }}>Departments</div>
+          <div style={{ fontSize: 11, color: "#B2D235", textTransform: "uppercase", letterSpacing: ".1em", fontWeight: 700, marginBottom: 12 }}>Departments</div>
           <ul style={{ listStyle: "none", padding: 0, margin: 0, lineHeight: 2, fontSize: 13, color: "#cbd5e1" }}>
             {DEPT_ORDER.slice(0, 5).map(s => <li key={s}><Link href={`/${s}`}>{DEPTS[s].name}</Link></li>)}
-            <li><Link href="/departments" style={{ color: "#5fd3f3" }}>See all 9 →</Link></li>
+            <li><Link href="/departments" style={{ color: "#B2D235" }}>See all 9 →</Link></li>
           </ul>
         </div>
         <div>
-          <div style={{ fontSize: 11, color: "#5fd3f3", textTransform: "uppercase", letterSpacing: ".1em", fontWeight: 700, marginBottom: 12 }}>Talk to us</div>
-          <Link href="/contact?cta=demo" style={{ display: "inline-block", background: "#2563eb", color: "#fff", padding: "9px 16px", borderRadius: 8, fontSize: 13, fontWeight: 600 }}>
+          <div style={{ fontSize: 11, color: "#B2D235", textTransform: "uppercase", letterSpacing: ".1em", fontWeight: 700, marginBottom: 12 }}>Talk to us</div>
+          <Link href="/contact?cta=demo" style={{ display: "inline-block", background: "#483A84", color: "#fff", padding: "9px 16px", borderRadius: 8, fontSize: 13, fontWeight: 600 }}>
             Book a 15-min demo →
           </Link>
         </div>

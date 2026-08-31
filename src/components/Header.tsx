@@ -18,7 +18,7 @@ export default function Header() {
           {NAV.map(n => (
             <Link key={n.href} href={n.href} style={{ fontSize: 14, color: "#cbd5e1", fontWeight: 500 }}>{n.label}</Link>
           ))}
-          <Link href="/contact?cta=demo" style={{ background: "#2563eb", color: "#fff", padding: "9px 18px", borderRadius: 8, fontSize: 14, fontWeight: 600 }}>
+          <Link href="/contact?cta=demo" style={{ background: "#483A84", color: "#fff", padding: "9px 18px", borderRadius: 8, fontSize: 14, fontWeight: 600 }}>
             Book a demo →
           </Link>
         </nav>
