@@ -45,8 +45,8 @@ export const FUNNELS: Funnel[] = [
     description:
       "See how many calls you actually missed last week, and what they were worth. Free, on your real number.",
     kicker: "For owners who work with their hands full",
-    headLead: "Six missed calls yesterday.",
-    headEm: "No idea who any of them were.",
+    headLead: "Six missed calls yesterday. No idea",
+    headEm: "who any of them were.",
     sub:
       "They didn't leave a message. They rang the next name on the list. You'll never find out what that Tuesday cost you — unless somebody counts.",
     cta: "Show me what I'm missing",
