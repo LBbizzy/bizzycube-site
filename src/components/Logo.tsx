@@ -2,29 +2,31 @@ import Image from "next/image";
 
 /* THE REAL LOGO.
  *
- * What was here was a hand-drawn SVG approximation of the brand - a plain
- * hexagon with a green zigzag through it, in colours that were nobody's
- * (#483A84 to #B2D235, with a #B2D235 stroke). The actual logo is a cube
- * in purple and teal with a lime arrow rising through it, and it was
- * sitting on a Desktop unused while the website drew its own version.
+ * The mark is the actual brand asset, not a hand-drawn approximation of it.
+ * The wordmark is set in live text beside it, so it stays crisp at any size,
+ * inherits the page's ink colour in both themes, and can be read aloud by a
+ * screen reader — none of which a flattened image of a wordmark can do.
  *
- * The MARK only, not the full lock-up. The wordmark is set in text beside
- * it so it stays crisp at any size and can be read by a screen reader,
- * which a flattened image of a wordmark cannot.
+ * The mark is a COLOUR mark (purple, teal, lime). On the near-black header it
+ * used to sit on, its purple face measured 2.05:1 — invisible. The fix is not
+ * to recolour the brand: it is to give the mark the light ground it was drawn
+ * for. `.bz-plate` is transparent on the light theme and becomes a small light
+ * tile in the dark one, so the mark is always legible and never redrawn.
  */
-export default function Logo({ size = 36 }: { size?: number }) {
+export default function Logo({ size = 26 }: { size?: number }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-      <Image
-        src="/bizzycube-mark.png"
-        alt=""
-        width={size}
-        height={size}
-        priority
-        style={{ display: "block" }}
-      />
-      <span style={{ fontWeight: 800, fontSize: 18, color: "#fff",
-                     letterSpacing: "-0.01em" }}>BizzyCube</span>
-    </div>
+    <span className="bz-brand">
+      <span className="bz-plate">
+        <Image
+          src="/bizzycube-mark.png"
+          alt=""
+          width={size}
+          height={size}
+          priority
+          style={{ display: "block", width: size, height: "auto" }}
+        />
+      </span>
+      BizzyCube
+    </span>
   );
 }

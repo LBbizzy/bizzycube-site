@@ -1,117 +1,231 @@
 import Link from "next/link";
-import { CATEGORIES, DEPTS } from "@/lib/departments";
+
+/* THE HOME PAGE.
+ *
+ * Problem in the visitor's own words on the left, outcome beside it. No
+ * department names, no feature lists, no mechanism, no price. Someone
+ * scanning reads only the left column and diagnoses themselves — and a
+ * competitor reading the whole thing learns what we're good at, not how it
+ * is built.
+ */
+
+const LEAKS: [string, string][] = [
+  [
+    "I was up a ladder. By the time I rang back they'd booked someone else.",
+    "Somebody answers properly, in a real voice, whatever time it is — finds out what's needed, writes it down, and it's on your list before you've wiped your hands.",
+  ],
+  [
+    "Six missed calls yesterday. No idea who any of them were.",
+    "A missed call gets a text back within seconds, while they're still deciding. Most reply. All of them end up on your list with a number you can ring.",
+  ],
+  [
+    "Some are texts, some are emails, some are on a Post-it, some are in my head.",
+    "Calls, texts, website messages, chats and forms all land in one place — with what each person wanted and when they asked.",
+  ],
+  [
+    "I typed the quote on my phone at eleven at night. It looked like it.",
+    "A priced offer that looks like a real business sent it, built from your own rates, out the same day — and signed without anyone printing anything.",
+  ],
+  [
+    "They said go ahead three weeks ago. I still haven't billed them.",
+    "The bill follows the yes on its own, with a pay button on it. You can see what's owed without going looking for it.",
+  ],
+  [
+    "I sent forty quotes last quarter. I chased maybe six.",
+    "Anyone who goes quiet gets followed up on a schedule, in your voice, until they answer either way. You just see who replied.",
+  ],
+  [
+    "Last post was March. Two reviews, both from 2023.",
+    "Posts and photos go out every week without you writing them, and happy customers get asked for a review at the moment they're happiest.",
+  ],
+  [
+    "I find out what I made in March sometime in July.",
+    "What came in, what went out and what's actually left — current, tied to the real bank account and the real ledger, not a spreadsheet you maintain.",
+  ],
+];
+
+const WHO: [string, string][] = [
+  ["Med spas", "Bookings lost to voicemail mid-treatment"],
+  ["Restaurants", "Catering enquiries nobody calls back"],
+  ["Salons", "No-shows and empty chairs, no reminders out"],
+  ["Contractors", "Quotes written at midnight, chased never"],
+  ["Clinics", "New-patient calls that ring out at lunch"],
+  ["Home services", "Six missed calls a day, none returned"],
+  ["Agencies", "Proposals out, follow-up forgotten"],
+  ["Real estate", "Enquiries buried across three inboxes"],
+  ["Auto shops", "Estimates by phone, nothing written down"],
+  ["Everyone else", "If the phone matters, it works the same"],
+];
+
+const REPLACES: [string, string][] = [
+  ["Part-time receptionist", "~$2,400/mo"],
+  ["Bookkeeper", "~$800/mo"],
+  ["Freelance marketer", "~$1,500/mo"],
+  ["Somebody to chase quotes", "never hired"],
+];
 
 export default function HomePage() {
   return (
     <>
-      <section style={{ padding: "100px 24px 70px", maxWidth: 1100, margin: "0 auto", textAlign: "center" }}>
-        <div style={{ display: "inline-block", background: "rgba(83, 74, 183, 0.15)", color: "#a78bfa", fontSize: 12, fontWeight: 700, padding: "6px 14px", borderRadius: 20, letterSpacing: ".08em", textTransform: "uppercase", marginBottom: 24 }}>
-          THE AI WORKFORCE FOR SMALL BUSINESS
-        </div>
-        <h1 style={{ fontSize: 72, fontWeight: 800, color: "#fff", letterSpacing: "-0.03em", lineHeight: 1, margin: "0 0 26px", maxWidth: 1000, marginLeft: "auto", marginRight: "auto" }}>
-          Hire one <span style={{ background: "linear-gradient(135deg, #B2D235, #483A84)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>AI workforce.</span><br/>
-          Replace ten specialists.
-        </h1>
-        <p style={{ fontSize: 21, color: "#cbd5e1", lineHeight: 1.5, maxWidth: 760, margin: "0 auto 40px" }}>
-          BizzyCube is an AI team that runs the parts of your business you can&apos;t do yourself — and shouldn&apos;t have to pay ten people to do. Pick what you need. Add more anytime. Pay less than one employee.
-        </p>
-        <div style={{ display: "flex", gap: 14, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
-          <Link href="/contact?cta=demo" style={{ background: "#483A84", color: "#fff", padding: "17px 36px", borderRadius: 11, fontSize: 16, fontWeight: 700, boxShadow: "0 8px 24px rgba(37, 99, 235, 0.3)" }}>
-            Book a 15-min demo →
-          </Link>
-          <Link href="/platform" style={{ background: "transparent", color: "#fff", padding: "17px 36px", borderRadius: 11, fontSize: 16, fontWeight: 600, border: "1px solid #2c333f" }}>
-            How BizzyCube works
-          </Link>
-        </div>
-        <div style={{ fontSize: 12, color: "#94a3b8" }}>
-          No credit card. No pitch. We map your business live on the call.
-        </div>
-      </section>
+      <div className="bz-wrap">
+        <section className="bz-hero">
+          <p className="bz-kicker">The front desk you can&apos;t afford to hire</p>
+          <h1 className="bz-serif" style={{ marginTop: 18 }}>
+            The work you lose, you never <em>hear about.</em>
+          </h1>
+          <p className="bz-sub">
+            Nobody tells you about the call that rang out, the quote that never
+            went, or the customer who booked somewhere else on Tuesday. We pick
+            it all up — and chase it.
+          </p>
+          <div className="bz-row">
+            <Link href="/contact" className="bz-btn bz-btn--big">
+              Book a 15-minute call
+            </Link>
+            <Link href="/#what-we-fix" className="bz-btn bz-btn--big bz-btn--out">
+              See what we fix
+            </Link>
+          </div>
+          <p className="bz-under">
+            No card. No pitch. We map where your business leaks, live on the call.
+          </p>
+        </section>
+      </div>
 
-      <section style={{ padding: "30px 24px 40px", borderTop: "1px solid #1f2733", borderBottom: "1px solid #1f2733", background: "#0a0d14" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", textAlign: "center" }}>
-          <div style={{ fontSize: 11, color: "#94a3b8", letterSpacing: ".14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 18 }}>
-            Built for any small business — HVAC, restaurants, salons, agencies, consultants, real estate, retail, services
+      <div className="bz-wrap">
+        <div className="bz-strip">
+          <div>
+            <span className="bz-n bz-serif">24/7</span>
+            <span className="bz-t">Somebody answers the phone, including Sunday night</span>
+          </div>
+          <div>
+            <span className="bz-n bz-serif">Seconds</span>
+            <span className="bz-t">A missed call gets a text back before they try the next name</span>
+          </div>
+          <div>
+            <span className="bz-n bz-serif">One</span>
+            <span className="bz-t">Every enquiry, from every direction, in one list</span>
+          </div>
+          <div>
+            <span className="bz-n bz-serif">Same day</span>
+            <span className="bz-t">Quotes out, signed, invoiced without you at a desk</span>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section style={{ padding: "80px 24px", maxWidth: 1100, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: 50 }}>
-          <h2 style={{ fontSize: 42, fontWeight: 800, color: "#fff", margin: "0 0 18px", letterSpacing: "-0.015em" }}>What do you need most right now?</h2>
-          <p style={{ fontSize: 17, color: "#cbd5e1", lineHeight: 1.6, maxWidth: 680, margin: "0 auto" }}>
-            Start with one. Add more when you&apos;re ready. Every part of BizzyCube works on its own — and works better with the others.
-          </p>
-        </div>
-        <div className="bz-grid bz-grid-3">
-          {CATEGORIES.map(c => {
-            const firstDept = DEPTS[c.depts[0]];
-            return (
-              <Link key={c.name} href={`/${firstDept.slug}`} style={{ background: "#0e1119", border: "1px solid #1f2733", borderRadius: 16, padding: 28, display: "block", transition: "border-color 0.15s" }}>
-                <div style={{ fontSize: 36, marginBottom: 14 }}>{c.emoji}</div>
-                <div style={{ fontSize: 22, fontWeight: 700, color: "#fff", marginBottom: 10 }}>{c.name}</div>
-                <div style={{ fontSize: 13, color: "#94a3b8", lineHeight: 1.6, marginBottom: 18 }}>
-                  {c.depts.length === 1 ? "1 service" : `${c.depts.length} services`} — {c.depts.map(s => DEPTS[s].name.replace(/^AI /, "")).join(" · ")}
-                </div>
-                <div style={{ color: "#B2D235", fontSize: 14, fontWeight: 600 }}>Explore →</div>
-              </Link>
-            );
-          })}
-        </div>
-      </section>
+      <div className="bz-wrap">
+        <section className="bz-sec" id="what-we-fix">
+          <div className="bz-head">
+            <p className="bz-kicker">What&apos;s going on · what we do about it</p>
+            <h2 className="bz-serif">You already know where it&apos;s going wrong.</h2>
+            <p>
+              Eight ordinary leaks. Read the left-hand column — if two or more
+              sound like your week, we should talk.
+            </p>
+          </div>
 
-      <section style={{ padding: "80px 24px", background: "#0a0d14", borderTop: "1px solid #1f2733", borderBottom: "1px solid #1f2733" }}>
-        <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
-          <div style={{ fontSize: 11, color: "#B2D235", letterSpacing: ".14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>The point of BizzyCube</div>
-          <h2 style={{ fontSize: 42, fontWeight: 800, color: "#fff", margin: "0 0 22px", letterSpacing: "-0.015em" }}>One workforce. Every job. Less than one employee.</h2>
-          <p style={{ fontSize: 18, color: "#cbd5e1", lineHeight: 1.7, marginBottom: 32 }}>
-            You can&apos;t afford a marketing director, a head of sales, a controller, a CTO, and an ops lead. You also can&apos;t do all five jobs yourself. BizzyCube is the third option.
-          </p>
-          <Link href="/platform" style={{ display: "inline-block", background: "transparent", color: "#fff", padding: "15px 30px", borderRadius: 10, fontSize: 15, fontWeight: 600, border: "1px solid #B2D235" }}>
-            See how BizzyCube works →
-          </Link>
-        </div>
-      </section>
+          {LEAKS.map(([said, does], i) => (
+            <div className="bz-item" key={i}>
+              <span className="bz-idx">{String(i + 1).padStart(2, "0")}</span>
+              <p className="bz-said">{"“" + said + "”"}</p>
+              <div className="bz-does">
+                <span className="bz-lab">What we do</span>
+                <p>{does}</p>
+              </div>
+            </div>
+          ))}
+        </section>
+      </div>
 
-      <section style={{ padding: "80px 24px", maxWidth: 1100, margin: "0 auto" }}>
-        <div style={{ textAlign: "center", marginBottom: 40 }}>
-          <div style={{ fontSize: 11, color: "#B2D235", letterSpacing: ".14em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>Proof</div>
-          <h2 style={{ fontSize: 38, fontWeight: 800, color: "#fff", margin: "0 0 16px", letterSpacing: "-0.01em" }}>Crest Air — invisible to 12 leads a week.</h2>
-          <p style={{ fontSize: 16, color: "#cbd5e1", lineHeight: 1.6, maxWidth: 680, margin: "0 auto" }}>
-            Family-owned HVAC company in Tucson. Started with BizzyCube on day one. Here&apos;s 30 days in.
-          </p>
-        </div>
-        <div style={{ background: "#0e1119", border: "1px solid #1f2733", borderRadius: 16, padding: 36 }}>
-          <div className="bz-grid bz-grid-4" style={{ gap: 24 }}>
-            {[
-              ["30", "days to live"],
-              ["6", "channels active"],
-              ["12+/wk", "qualified leads"],
-              ["< 90s", "lead → owner's phone"],
-            ].map(s => (
-              <div key={s[1]}>
-                <div style={{ fontSize: 40, fontWeight: 800, color: "#B2D235", letterSpacing: "-0.02em" }}>{s[0]}</div>
-                <div style={{ fontSize: 13, color: "#cbd5e1", marginTop: 6, fontWeight: 600 }}>{s[1]}</div>
+      <div className="bz-wrap">
+        <section className="bz-sec bz-sec--top0" id="who-its-for">
+          <div className="bz-head">
+            <p className="bz-kicker">Who it&apos;s for</p>
+            <h2 className="bz-serif">
+              Businesses where the owner is also the front desk.
+            </h2>
+            <p>
+              Different trades, same week. If you&apos;re the one who answers,
+              quotes and remembers to post something, it was built for you.
+            </p>
+          </div>
+          <div className="bz-who">
+            {WHO.map(([who, why]) => (
+              <div key={who}>
+                <b>{who}</b>
+                <span>{why}</span>
               </div>
             ))}
           </div>
-          <div style={{ marginTop: 24 }}>
-            <Link href="/case-studies" style={{ color: "#B2D235", fontSize: 14, fontWeight: 600 }}>Read the full Crest Air case study →</Link>
+        </section>
+      </div>
+
+      <div className="bz-band">
+        <div className="bz-wrap">
+          <div className="bz-cols">
+            <div>
+              <p className="bz-kicker">What it costs</p>
+              <h2 className="bz-serif" style={{ marginTop: 14 }}>
+                Less than the person you&apos;d otherwise have to hire.
+              </h2>
+              <p style={{ marginTop: 20 }}>
+                You don&apos;t need a receptionist, a bookkeeper, a marketer and
+                somebody to chase quotes. You need those jobs done.
+              </p>
+              <p>
+                You&apos;ll get a straight number on the call, once we&apos;ve
+                seen which parts you actually need. Quoting before that is how
+                people end up paying for software they never open.
+              </p>
+              <Link
+                href="/contact"
+                className="bz-btn bz-btn--pale"
+                style={{ marginTop: 12 }}
+              >
+                Get a number
+              </Link>
+            </div>
+            <div>
+              <p className="bz-kicker" style={{ marginBottom: 16 }}>
+                What it replaces
+              </p>
+              <div className="bz-repl">
+                {REPLACES.map(([what, cost]) => (
+                  <div key={what}>
+                    <span>{what}</span>
+                    <span>{cost}</span>
+                  </div>
+                ))}
+                <div className="bz-us">
+                  <span>BizzyCube</span>
+                  <span>one number, on the call</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section style={{ background: "linear-gradient(135deg, #1e1b4b 0%, #0e1119 100%)", padding: "70px 24px", margin: "60px 0 0", borderTop: "1px solid #2c333f", borderBottom: "1px solid #2c333f" }}>
-        <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center" }}>
-          <h2 style={{ fontSize: 36, fontWeight: 800, color: "#fff", margin: "0 0 18px", letterSpacing: "-0.01em" }}>See what BizzyCube would do for YOUR business.</h2>
-          <p style={{ fontSize: 16, color: "#cbd5e1", lineHeight: 1.6, margin: "0 0 28px" }}>
-            15-minute call. No pitch. We map your business live and show you what your AI workforce would handle.
+      <div className="bz-wrap">
+        <section className="bz-close">
+          <h2 className="bz-serif">
+            Fifteen minutes. We&apos;ll show you where it&apos;s leaking.
+          </h2>
+          <p>
+            Nothing to prepare. We look at how work reaches you today and tell
+            you straight what&apos;s falling through — whether or not you hire
+            us.
           </p>
-          <Link href="/contact?cta=demo" style={{ display: "inline-block", background: "#483A84", color: "#fff", padding: "16px 36px", borderRadius: 11, fontSize: 15, fontWeight: 700 }}>
-            Book a 15-min demo →
-          </Link>
-        </div>
-      </section>
+          <div className="bz-row">
+            <Link href="/contact" className="bz-btn bz-btn--big">
+              Book a 15-minute call
+            </Link>
+            <a href="tel:+18337258858" className="bz-btn bz-btn--big bz-btn--out">
+              Or call (833) 725-8858
+            </a>
+          </div>
+        </section>
+      </div>
     </>
   );
 }

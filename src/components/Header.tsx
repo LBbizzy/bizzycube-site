@@ -1,28 +1,28 @@
 import Link from "next/link";
 import Logo from "./Logo";
 
+/* The nav names what a visitor came to find out, not how the product is
+ * organised. There is no "Departments" and no "Pricing": the department pages
+ * published the feature list, and there is no rate card to stand behind yet.
+ * Both were decisions, not omissions. */
 const NAV = [
-  { href: "/platform", label: "How it works" },
-  { href: "/departments", label: "Departments" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/case-studies", label: "Case studies" },
-  { href: "/contact", label: "Contact" },
+  { href: "/#what-we-fix", label: "What we fix" },
+  { href: "/#who-its-for", label: "Who it's for" },
+  { href: "/about", label: "About" },
 ];
 
 export default function Header() {
   return (
-    <header style={{ position: "sticky", top: 0, zIndex: 50, background: "rgba(10,13,20,0.85)", backdropFilter: "blur(10px)", borderBottom: "1px solid #1f2733" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "16px 24px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <Link href="/"><Logo /></Link>
-        <nav className="bz-hide-on-mobile" style={{ display: "flex", gap: 28, alignItems: "center" }}>
-          {NAV.map(n => (
-            <Link key={n.href} href={n.href} style={{ fontSize: 14, color: "#cbd5e1", fontWeight: 500 }}>{n.label}</Link>
+    <div className="bz-wrap">
+      <header className="bz-nav">
+        <Link href="/" aria-label="BizzyCube home"><Logo /></Link>
+        <nav className="bz-links">
+          {NAV.map((n) => (
+            <Link key={n.href} href={n.href}>{n.label}</Link>
           ))}
-          <Link href="/contact?cta=demo" style={{ background: "#483A84", color: "#fff", padding: "9px 18px", borderRadius: 8, fontSize: 14, fontWeight: 600 }}>
-            Book a demo →
-          </Link>
         </nav>
-      </div>
-    </header>
+        <Link href="/contact" className="bz-btn">Book a call</Link>
+      </header>
+    </div>
   );
 }

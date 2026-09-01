@@ -1,59 +1,240 @@
-@import "tailwindcss";
+/* ---------------------------------------------------------------------------
+   THE DESIGN SYSTEM.
 
-:root {
-  --bg: #0a0d14;
-  --surface: #0e1119;
-  --border: #1f2733;
-  --text: #e5e7eb;
-  --muted: #94a3b8;
-  --brand-purple: #534AB7;
-  --brand-cyan: #5fd3f3;
-  --brand-green: #22c55e;
-  --accent-blue: #2563eb;
+   Every colour, size and rule on this site lives here. A colour written
+   straight into a component is how a site drifts back into looking like five
+   different sites, so components read tokens and nothing else.
+
+   Light is the default and it is the one that was designed. The dark block
+   redefines TOKENS ONLY, never component rules, so a colour can never end up
+   applying in one theme and going missing in the other.
+
+   Everything is prefixed bz- on purpose. Bare element selectors (section, nav,
+   footer) would reach into pages that are not part of this system and quietly
+   restyle them.
+--------------------------------------------------------------------------- */
+
+:root{
+  --bg:#FBFBF9;
+  --raise:#FFFFFF;
+  --ink:#0B0C0D;
+  --muted:#6C6F76;
+  --line:#E7E6E2;
+  --accent:#4A3C8C;        /* the brand purple — the only colour on the page */
+  --deep:#141119;          /* the one dark band */
+  --on-deep:#F4F2F7;
+  --deep-muted:#A39CB5;
+  --deep-accent:#B9A9F0;
+  --mark-plate:transparent;   /* the mark is a colour mark: on a dark
+                                 ground it gets its own light tile so the
+                                 purple face never drops to 2:1 again */
+  --mark-plate-pad:0px;
+  --sans:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --serif:'Instrument Serif',Georgia,'Times New Roman',serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0C0B0F; --raise:#141119; --ink:#F4F2F7; --muted:#9B94A8;
+    --line:#232030; --accent:#B9A9F0; --deep:#08070A; --on-deep:#F4F2F7;
+    --deep-muted:#9B94A8; --deep-accent:#B9A9F0;
+    --mark-plate:#F4F2F7; --mark-plate-pad:4px;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0C0B0F; --raise:#141119; --ink:#F4F2F7; --muted:#9B94A8;
+  --line:#232030; --accent:#B9A9F0; --deep:#08070A; --on-deep:#F4F2F7;
+  --deep-muted:#9B94A8; --deep-accent:#B9A9F0;
+  --mark-plate:#F4F2F7; --mark-plate-pad:4px;
 }
 
-@theme inline {
-  --color-bg: var(--bg);
-  --color-surface: var(--surface);
-  --color-border: var(--border);
-  --color-brand-purple: var(--brand-purple);
-  --color-brand-cyan: var(--brand-cyan);
-}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:17px;line-height:1.55;letter-spacing:-.011em;
+  -webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+h1,h2,h3,h4{margin:0;font-weight:400;text-wrap:balance}
+p{margin:0 0 15px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;
+  animation:none!important;scroll-behavior:auto!important}}
 
-html, body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
-* { box-sizing: border-box; }
-a { color: inherit; text-decoration: none; }
+/* --- type ---------------------------------------------------------------- */
+.bz-serif{font-family:var(--serif);font-weight:400;letter-spacing:-.015em;
+  line-height:1.06}
+.bz-kicker{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--muted);font-weight:500;margin:0}
+.bz-dim{color:var(--muted)}
 
-/* SYMMETRY GRID UTILITIES — explicit columns matched to item count */
-.bz-grid       { display: grid; gap: 16px; }
-.bz-grid-2     { grid-template-columns: repeat(2, 1fr); }
-.bz-grid-3     { grid-template-columns: repeat(3, 1fr); }
-.bz-grid-4     { grid-template-columns: repeat(4, 1fr); }
-.bz-grid-5     { grid-template-columns: repeat(5, 1fr); }
+/* --- frame --------------------------------------------------------------- */
+.bz-wrap{max-width:1180px;margin:0 auto;padding:0 40px}
+/* The reading column. It keeps the full page gutter so its left edge lines
+   up with the logo in the header — a centred 920px box inside an 1180px
+   frame reads as a mistake, because it is one. */
+.bz-wrap.bz-tight{max-width:1180px}
+.bz-wrap.bz-tight>section{max-width:900px}
+@media(max-width:640px){.bz-wrap{padding:0 22px}}
+.bz-sec{padding:100px 0}
+@media(max-width:640px){.bz-sec{padding:68px 0}}
+.bz-sec--top0{padding-top:0}
+.bz-head{max-width:640px;margin-bottom:56px}
+.bz-head h2{font-size:clamp(32px,4.4vw,52px);margin-top:14px;max-width:17ch}
+.bz-head p{color:var(--muted);font-size:18.5px;margin-top:18px;max-width:50ch}
 
-@media (max-width: 1024px) {
-  .bz-grid-4, .bz-grid-5 { grid-template-columns: repeat(2, 1fr); }
-  .bz-grid-3 { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 640px) {
-  .bz-grid-2, .bz-grid-3, .bz-grid-4, .bz-grid-5 { grid-template-columns: 1fr; }
-}
+/* --- buttons ------------------------------------------------------------- */
+.bz-btn{display:inline-block;background:var(--ink);color:var(--bg);
+  font-size:14.5px;font-weight:500;padding:10px 18px;border-radius:100px;
+  border:none;cursor:pointer;font-family:inherit;letter-spacing:-.01em;
+  line-height:1.4;text-align:center}
+.bz-btn:hover{opacity:.88}
+.bz-btn--out{background:transparent;color:var(--ink);
+  box-shadow:inset 0 0 0 1px var(--line)}
+.bz-btn--pale{background:var(--on-deep);color:var(--deep)}
+.bz-btn--big{padding:13px 24px;font-size:15.5px}
+.bz-btn:disabled{opacity:.5;cursor:default}
+.bz-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.bz-under{margin-top:22px;font-size:13.5px;color:var(--muted)}
 
-/* Flex utility for navigation hide on narrow screens */
-@media (max-width: 900px) {
-  .bz-hide-on-mobile { display: none !important; }
-}
+/* --- header / footer ----------------------------------------------------- */
+.bz-nav{display:flex;align-items:center;justify-content:space-between;
+  padding:24px 0;border-bottom:1px solid var(--line)}
+.bz-brand{display:flex;align-items:center;gap:9px;font-weight:600;
+  font-size:16px;letter-spacing:-.02em;color:var(--ink)}
+/* The mark's plate. Invisible on the light ground the mark was drawn for;
+   in the dark theme it becomes a small light tile, so the purple face never
+   drops back to the 2:1 it measured on the old near-black header. */
+.bz-plate{background:var(--mark-plate);padding:var(--mark-plate-pad);
+  border-radius:7px;display:inline-flex;flex:none;line-height:0}
+.bz-links{display:flex;gap:30px;font-size:14.5px;color:var(--muted);
+  align-items:center}
+.bz-links a:hover{color:var(--ink)}
+@media(max-width:860px){.bz-links{display:none}}
+.bz-foot{border-top:1px solid var(--line);padding:40px 0 64px;
+  font-size:13.5px;color:var(--muted)}
+.bz-foot-line{display:flex;justify-content:space-between;gap:24px;
+  flex-wrap:wrap;margin-top:26px;font-size:12.5px}
+.bz-foot-line a:hover{color:var(--ink)}
+.bz-foot p{max-width:52ch;margin:16px 0 0}
 
-@media (max-width: 768px) {
-  .bz-footer-grid { grid-template-columns: 1fr !important; }
-}
+/* --- hero ---------------------------------------------------------------- */
+.bz-hero{padding:104px 0 88px}
+@media(max-width:640px){.bz-hero{padding:64px 0 56px}}
+.bz-hero h1{font-size:clamp(42px,7vw,92px);max-width:16ch}
+.bz-hero h1 em{font-family:var(--serif);font-style:italic;color:var(--accent)}
+.bz-hero .bz-sub{font-size:20px;line-height:1.5;color:var(--muted);
+  max-width:46ch;margin:30px 0 36px}
 
-/* Ship 731: legal pages */
-main h2 { font-size: 22px; font-weight: 700; margin-top: 28px; margin-bottom: 8px; color: #111827; }
-main p { margin-bottom: 14px; }
-main a { color: #2563eb; text-decoration: underline; }
+/* --- the count strip ----------------------------------------------------- */
+.bz-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  display:grid;grid-template-columns:repeat(4,1fr)}
+@media(max-width:760px){.bz-strip{grid-template-columns:repeat(2,1fr)}}
+.bz-strip>div{padding:26px 30px 28px;border-right:1px solid var(--line)}
+.bz-strip>div:last-child{border-right:none}
+@media(max-width:760px){
+  .bz-strip>div{padding:22px 20px 24px}
+  .bz-strip>div:nth-child(2){border-right:none}
+  .bz-strip>div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+}
+.bz-strip .bz-n{font-family:var(--serif);font-size:34px;line-height:1;
+  display:block;margin-bottom:8px}
+.bz-strip .bz-t{font-size:14px;color:var(--muted);line-height:1.45}
+
+/* --- the editorial problem / answer list --------------------------------- */
+.bz-item{display:grid;grid-template-columns:56px 1fr 1fr;gap:40px;
+  padding:38px 0;border-top:1px solid var(--line);align-items:start}
+.bz-item:last-of-type{border-bottom:1px solid var(--line)}
+@media(max-width:900px){
+  .bz-item{grid-template-columns:1fr;gap:14px;padding:32px 0}
+  .bz-item .bz-idx{display:none}
+}
+.bz-idx{font-size:13px;color:var(--muted);padding-top:9px;
+  font-variant-numeric:tabular-nums}
+.bz-said{font-family:var(--serif);font-size:26px;line-height:1.22;
+  letter-spacing:-.015em;max-width:22ch;margin:0}
+@media(max-width:900px){.bz-said{font-size:23px}}
+.bz-lab{font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--accent);font-weight:600;display:block;margin-bottom:9px}
+.bz-does p{font-size:16.5px;color:var(--muted);margin:0;max-width:40ch}
+
+/* --- who it's for -------------------------------------------------------- */
+.bz-who{display:grid;grid-template-columns:repeat(2,1fr);gap:0 56px}
+@media(max-width:820px){.bz-who{grid-template-columns:1fr}}
+.bz-who>div{padding:16px 0;border-top:1px solid var(--line);display:flex;
+  gap:18px;align-items:baseline}
+.bz-who b{font-weight:500;font-size:16.5px;width:118px;flex:none}
+.bz-who span{font-size:15.5px;color:var(--muted)}
+
+/* --- the dark band ------------------------------------------------------- */
+.bz-band{background:var(--deep);color:var(--on-deep)}
+.bz-band .bz-wrap{padding-top:96px;padding-bottom:96px}
+@media(max-width:640px){.bz-band .bz-wrap{padding-top:64px;padding-bottom:64px}}
+.bz-band h2{font-size:clamp(32px,4.4vw,52px);max-width:16ch}
+.bz-band .bz-kicker{color:var(--deep-muted)}
+.bz-band p{color:var(--deep-muted);font-size:18px;max-width:44ch}
+.bz-cols{display:grid;grid-template-columns:1fr 1fr;gap:64px;
+  align-items:start;margin-top:14px}
+@media(max-width:860px){.bz-cols{grid-template-columns:1fr;gap:40px}}
+.bz-repl>div{display:flex;justify-content:space-between;gap:20px;
+  padding:15px 0;border-bottom:1px solid rgba(255,255,255,.10);
+  font-size:16.5px}
+.bz-repl>div:first-child{border-top:1px solid rgba(255,255,255,.10)}
+.bz-repl span:last-child{color:var(--deep-muted);
+  font-variant-numeric:tabular-nums;flex:none}
+.bz-repl>div.bz-us{border-bottom:none;padding-top:20px;font-size:19px}
+.bz-repl>div.bz-us span:first-child{color:var(--on-deep)}
+.bz-repl>div.bz-us span:last-child{color:var(--deep-accent)}
+
+/* --- close --------------------------------------------------------------- */
+.bz-close{padding:104px 0 56px}
+@media(max-width:640px){.bz-close{padding:68px 0 40px}}
+.bz-close h2{font-size:clamp(32px,5.6vw,68px);max-width:15ch}
+.bz-close p{color:var(--muted);font-size:19px;max-width:44ch;margin:22px 0 32px}
+
+/* --- landing pages ------------------------------------------------------- */
+.bz-checks{margin:56px 0 0;border-top:1px solid var(--line)}
+.bz-checks>div{display:grid;grid-template-columns:1fr 1fr;gap:36px;
+  padding:22px 0;border-bottom:1px solid var(--line);align-items:baseline}
+@media(max-width:760px){.bz-checks>div{grid-template-columns:1fr;gap:8px}}
+.bz-checks .bz-q{font-family:var(--serif);font-size:22px;line-height:1.25;
+  max-width:24ch;margin:0}
+.bz-checks .bz-a{font-size:16px;color:var(--muted);max-width:38ch;margin:0}
+
+.bz-trail{background:var(--deep);color:var(--on-deep);border-radius:12px;
+  padding:44px 44px 46px;margin-top:64px}
+@media(max-width:700px){.bz-trail{padding:32px 24px}}
+.bz-trail h3{font-size:clamp(24px,3.4vw,38px);max-width:18ch}
+.bz-trail p{color:var(--deep-muted);max-width:46ch;margin-top:16px}
+.bz-tl{margin-top:32px;border-top:1px solid rgba(255,255,255,.10)}
+.bz-tl>div{display:grid;grid-template-columns:132px 1fr;gap:20px;
+  padding:13px 0;border-bottom:1px solid rgba(255,255,255,.10);
+  font-size:15.5px}
+@media(max-width:640px){.bz-tl>div{grid-template-columns:1fr;gap:3px}}
+.bz-tl .bz-when{color:var(--deep-muted);font-variant-numeric:tabular-nums;
+  font-size:13.5px;padding-top:2px}
+
+/* --- forms --------------------------------------------------------------- */
+.bz-form{border:1px solid var(--line);border-radius:12px;padding:32px 30px;
+  max-width:520px;background:var(--raise)}
+@media(max-width:640px){.bz-form{padding:26px 22px}}
+.bz-form h3{font-size:21px;font-weight:500;margin-bottom:6px}
+.bz-form>p{font-size:15px;color:var(--muted)}
+.bz-field{width:100%;background:transparent;border:none;
+  border-bottom:1px solid var(--line);padding:11px 0;font-size:16px;
+  color:var(--ink);font-family:inherit;outline:none;border-radius:0;
+  display:block}
+.bz-field:focus{border-bottom-color:var(--accent)}
+.bz-field::placeholder{color:var(--muted)}
+textarea.bz-field{resize:vertical;min-height:70px}
+.bz-label{font-size:11px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--muted);display:block;margin-top:20px;margin-bottom:-4px}
+.bz-fine{font-size:12.5px;color:var(--muted);margin:16px 0 0;line-height:1.6}
+
+/* --- note (used on legal + about pages) ---------------------------------- */
+.bz-prose{max-width:70ch}
+.bz-prose h2{font-size:24px;margin:38px 0 12px;font-weight:500}
+.bz-prose p,.bz-prose li{color:var(--muted);font-size:16.5px}
+.bz-prose ul{padding-left:20px;margin:0 0 15px}
+.bz-prose li{margin-bottom:7px}
+.bz-prose a{color:var(--accent);text-decoration:underline;
+  text-underline-offset:2px}

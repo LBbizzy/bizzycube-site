@@ -1,19 +1,28 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-/* A REAL CHAT, not a link dressed up as one.
+/* THE CHAT ON THE WEBSITE.
  *
- * What was here before looked like a chat widget and was a link to the
- * contact form — you clicked "Start a conversation" and the contact page
- * reloaded. Meanwhile the platform has had a working web chat the whole
- * time: it captures the visitor as a contact, opens a thread in the War
- * Room inbox, and lets the conversation continue on a visitor token.
+ * Three things were wrong with what was here and all three are fixed.
  *
- * HONEST ABOUT WHAT IT IS: this puts a real person's message in front of a
- * real person. It is not an instant-answer bot — nothing auto-replies yet.
- * So the widget promises a fast human reply rather than pretending to be
- * an AI that answers on the spot, because a bot that never speaks is worse
- * than an honest contact form.
+ * 1. It gated the conversation. You had to hand over a name and a phone
+ *    number before you could ask a single question — which is a contact form
+ *    wearing a chat bubble. The platform stopped requiring that; this now
+ *    lets somebody just ask, and asks who they are only if the conversation
+ *    gets somewhere.
+ *
+ * 2. It never showed the answer. The assistant replies a moment AFTER the
+ *    door returns — that's what `thinking` in the response means — and this
+ *    widget only ever rendered what came back in the same breath. So the
+ *    reply was written, filed in the War Room, and never seen by the visitor
+ *    who asked. It now waits for it.
+ *
+ * 3. It was styled like a different website.
+ *
+ * What it is, honestly: the assistant answers about BizzyCube and can note
+ * what you want and ask a person to call you. It cannot look anything up
+ * about you, and it cannot change anything. Every word of it lands in the
+ * same inbox as a phone call.
  */
 
 const API = "https://dztu1141o7.execute-api.us-west-2.amazonaws.com";
@@ -22,42 +31,37 @@ const SITE_TOKEN =
 
 type Msg = { body: string; direction: string; at?: string };
 
-const C = {
-  ink: "#0e1119",
-  line: "#1f2733",
-  field: "#0a0d14",
-  edge: "#2c333f",
-  text: "#e8eef5",
-  dim: "#9aa8b8",
-  green: "#B2D235",
-  purple: "#483A84",
-  teal: "#0E94B5",
-};
+/* How long to wait for the assistant before saying so. It is a model call,
+ * so it is usually a couple of seconds and occasionally not. Saying "a person
+ * will pick this up" after twenty seconds is better than a spinner forever. */
+const WAIT_MS = 22000;
+const POLL_MS = 1800;
 
 export default function DJChatBubble() {
   const [open, setOpen] = useState(false);
   const [vt, setVt] = useState("");
   const [msgs, setMsgs] = useState<Msg[]>([]);
-  const [name, setName] = useState("");
-  const [reach, setReach] = useState("");
   const [draft, setDraft] = useState("");
   const [busy, setBusy] = useState(false);
+  const [waiting, setWaiting] = useState(false);
+  const [slow, setSlow] = useState(false);
   const [err, setErr] = useState("");
   const endRef = useRef<HTMLDivElement>(null);
+  const stop = useRef(false);
 
-  // Keep the thread across a page change — a visitor who clicks Pricing
-  // mid-conversation should not have to introduce themselves again.
   useEffect(() => {
     try {
       const saved = sessionStorage.getItem("bc_chat_vt");
       if (saved) setVt(saved);
     } catch {}
+    return () => { stop.current = true; };
   }, []);
   useEffect(() => {
     if (vt) { try { sessionStorage.setItem("bc_chat_vt", vt); } catch {} }
   }, [vt]);
-  useEffect(() => { endRef.current?.scrollIntoView({ behavior: "smooth" }); },
-    [msgs, open]);
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }, [msgs, open, waiting]);
 
   async function post(path: string, body: unknown) {
     const r = await fetch(API + path, {
@@ -66,133 +70,150 @@ export default function DJChatBubble() {
       body: JSON.stringify(body),
     });
     const d = await r.json().catch(() => ({}));
-    // The platform's own words reach the visitor. "A phone or an email —
-    // some way to answer you" is useful; "something went wrong" is not.
+    // The platform's own words reach the visitor. "A phone or an email — some
+    // way to answer you" is useful; "something went wrong" is not.
     if (!r.ok || d.ok === false) throw new Error(d.error || "That didn't send.");
     return d;
   }
 
-  async function start(e: React.FormEvent) {
-    e.preventDefault();
-    setErr(""); setBusy(true);
-    try {
-      const d = await post("/chat/start", {
-        t: SITE_TOKEN, name, contact: reach, message: draft,
-      });
-      setVt(d.vt); setMsgs(d.messages || []); setDraft("");
-    } catch (e) {
-      setErr(e instanceof Error ? e.message : "That didn't send.");
-    } finally { setBusy(false); }
-  }
+  /* Wait for the reply that is being written right now. */
+  const awaitReply = useCallback(async (token: string, had: number) => {
+    setWaiting(true); setSlow(false);
+    const until = Date.now() + WAIT_MS;
+    while (Date.now() < until && !stop.current) {
+      await new Promise((r) => setTimeout(r, POLL_MS));
+      try {
+        const r = await fetch(
+          `${API}/chat/thread?vt=${encodeURIComponent(token)}`);
+        const d = await r.json();
+        const list: Msg[] = d.messages || [];
+        if (list.length > had) { setMsgs(list); setWaiting(false); return; }
+      } catch { /* a dropped poll is not an error worth showing */ }
+    }
+    setWaiting(false); setSlow(true);
+  }, []);
 
-  async function say(e: React.FormEvent) {
+  async function send(e: React.FormEvent) {
     e.preventDefault();
-    if (!draft.trim()) return;
-    setErr(""); setBusy(true);
-    const mine = draft;
-    setDraft("");
+    const mine = draft.trim();
+    if (!mine || busy) return;
+    setErr(""); setBusy(true); setDraft(""); setSlow(false);
     try {
-      const d = await post("/chat/say", { vt, message: mine });
-      setMsgs(d.messages || []);
+      if (!vt) {
+        const d = await post("/chat/start", { t: SITE_TOKEN, message: mine });
+        const list: Msg[] = d.messages || [];
+        setVt(d.vt); setMsgs(list);
+        if (d.thinking) await awaitReply(d.vt, list.length);
+      } else {
+        const d = await post("/chat/say", { vt, message: mine });
+        const list: Msg[] = d.messages || [];
+        setMsgs(list);
+        if (d.thinking) await awaitReply(vt, list.length);
+      }
     } catch (e) {
       setDraft(mine);
       setErr(e instanceof Error ? e.message : "That didn't send.");
     } finally { setBusy(false); }
   }
 
-  const input: React.CSSProperties = {
-    width: "100%", background: C.field, border: `1px solid ${C.edge}`,
-    color: C.text, padding: "10px 12px", borderRadius: 8, fontSize: 13,
-    fontFamily: "inherit", marginBottom: 8,
-  };
-  const send: React.CSSProperties = {
-    width: "100%", background: C.green, color: "#14210a", border: "none",
-    padding: "11px 16px", borderRadius: 8, fontSize: 13, fontWeight: 700,
-    cursor: busy ? "wait" : "pointer", opacity: busy ? 0.6 : 1,
+  const panel: React.CSSProperties = {
+    width: 348, maxWidth: "calc(100vw - 44px)", background: "var(--raise)",
+    border: "1px solid var(--line)", borderRadius: 14, padding: 18,
+    marginBottom: 12, boxShadow: "0 18px 50px rgba(11,12,13,.16)",
   };
 
   return (
     <div style={{ position: "fixed", right: 22, bottom: 22, zIndex: 60 }}>
       {open && (
-        <div style={{
-          width: 340, maxWidth: "calc(100vw - 44px)", background: C.ink,
-          border: `1px solid ${C.line}`, borderRadius: 14, padding: 18,
-          marginBottom: 12, boxShadow: "0 18px 50px rgba(0,0,0,.55)",
-        }}>
+        <div style={panel} role="dialog" aria-label="Chat with BizzyCube">
           <div style={{ display: "flex", justifyContent: "space-between",
-                        alignItems: "center", marginBottom: 10 }}>
-            <div style={{ fontSize: 15, fontWeight: 700, color: C.text }}>
-              Chat with BizzyCube
-            </div>
+                        alignItems: "center", marginBottom: 12 }}>
+            <span style={{ fontSize: 15, fontWeight: 500 }}>Ask us anything</span>
             <button onClick={() => setOpen(false)} aria-label="Close chat"
-              style={{ background: "transparent", border: "none",
-                       color: C.dim, fontSize: 20, cursor: "pointer" }}>×</button>
+              style={{ background: "transparent", border: "none", padding: 0,
+                       color: "var(--muted)", fontSize: 22, lineHeight: 1,
+                       cursor: "pointer" }}>×</button>
           </div>
 
-          {!vt ? (
-            <form onSubmit={start}>
-              <p style={{ fontSize: 12.5, color: C.dim, lineHeight: 1.6,
-                          marginBottom: 12 }}>
-                Ask anything — pricing, whether we fit your business, what
-                we&apos;d build first. A real person answers, usually within
-                the hour.
-              </p>
-              <input style={input} placeholder="Your name" required
-                value={name} onChange={(e) => setName(e.target.value)} />
-              <input style={input} placeholder="Phone or email" required
-                value={reach} onChange={(e) => setReach(e.target.value)} />
-              <textarea style={{ ...input, minHeight: 74, resize: "vertical" }}
-                placeholder="What do you want to know?" required
-                value={draft} onChange={(e) => setDraft(e.target.value)} />
-              <button type="submit" style={send} disabled={busy}>
-                {busy ? "Sending…" : "Start the conversation →"}
-              </button>
-            </form>
-          ) : (
-            <>
-              <div style={{ maxHeight: 260, overflowY: "auto",
-                            margin: "0 -4px 10px", padding: "0 4px" }}>
-                {msgs.map((m, i) => (
-                  <div key={i} style={{
-                    textAlign: m.direction === "out" ? "left" : "right",
-                    marginBottom: 8,
-                  }}>
-                    <span style={{
-                      display: "inline-block", maxWidth: "86%",
-                      background: m.direction === "out" ? C.purple : C.field,
-                      border: `1px solid ${m.direction === "out" ? C.purple : C.edge}`,
-                      color: C.text, padding: "8px 11px", borderRadius: 10,
-                      fontSize: 13, lineHeight: 1.5, textAlign: "left",
-                      whiteSpace: "pre-wrap",
-                    }}>{m.body}</span>
-                  </div>
-                ))}
-                <div ref={endRef} />
-              </div>
-              <form onSubmit={say}>
-                <textarea style={{ ...input, minHeight: 56, resize: "vertical" }}
-                  placeholder="Type a message…" value={draft}
-                  onChange={(e) => setDraft(e.target.value)} />
-                <button type="submit" style={send} disabled={busy}>
-                  {busy ? "Sending…" : "Send"}
-                </button>
-              </form>
-            </>
+          {msgs.length === 0 && (
+            <p style={{ fontSize: 13.5, color: "var(--muted)", lineHeight: 1.6 }}>
+              No form first. Ask whether we&apos;d suit your business, what
+              we&apos;d fix first, or anything else — and say the word if
+              you&apos;d rather a person rang you.
+            </p>
           )}
 
+          {msgs.length > 0 && (
+            <div style={{ maxHeight: 280, overflowY: "auto",
+                          margin: "0 -4px 12px", padding: "0 4px" }}>
+              {msgs.map((m, i) => (
+                <div key={i} style={{
+                  display: "flex",
+                  justifyContent: m.direction === "out" ? "flex-start" : "flex-end",
+                  marginBottom: 8,
+                }}>
+                  <span style={{
+                    maxWidth: "86%",
+                    background: m.direction === "out"
+                      ? "var(--bg)" : "var(--accent)",
+                    border: `1px solid ${m.direction === "out"
+                      ? "var(--line)" : "var(--accent)"}`,
+                    color: m.direction === "out" ? "var(--ink)" : "#fff",
+                    padding: "9px 12px", borderRadius: 12, fontSize: 14,
+                    lineHeight: 1.5, whiteSpace: "pre-wrap",
+                  }}>{m.body}</span>
+                </div>
+              ))}
+              {waiting && (
+                <p style={{ fontSize: 13, color: "var(--muted)", margin: "2px 0" }}>
+                  Typing…
+                </p>
+              )}
+              {slow && (
+                <p style={{ fontSize: 13, color: "var(--muted)", margin: "2px 0" }}>
+                  Still thinking about that one — it&apos;s in the inbox either
+                  way, so a person will pick it up if the answer doesn&apos;t
+                  land here.
+                </p>
+              )}
+              <div ref={endRef} />
+            </div>
+          )}
+
+          <form onSubmit={send}>
+            <textarea
+              className="bz-field"
+              style={{ minHeight: 58, marginTop: msgs.length ? 0 : 12 }}
+              placeholder="Type a message…"
+              value={draft}
+              onChange={(e) => setDraft(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  send(e as unknown as React.FormEvent);
+                }
+              }}
+            />
+            <button type="submit" className="bz-btn"
+                    style={{ width: "100%", marginTop: 14 }} disabled={busy}>
+              {busy ? "Sending…" : "Send"}
+            </button>
+          </form>
+
           {err && (
-            <p style={{ fontSize: 12, color: "#f2a5a5", marginTop: 8 }}>{err}</p>
+            <p style={{ fontSize: 13, color: "#B3261E", marginTop: 10 }}>{err}</p>
           )}
         </div>
       )}
 
-      <button onClick={() => setOpen(!open)} aria-label="Chat with BizzyCube"
+      <button onClick={() => setOpen(!open)}
+        aria-label={open ? "Close chat" : "Chat with BizzyCube"}
         style={{
-          width: 56, height: 56, borderRadius: "50%", border: "none",
-          cursor: "pointer", fontSize: 24, color: "#fff",
-          background: `linear-gradient(135deg, ${C.purple}, ${C.teal})`,
-          boxShadow: `0 8px 24px rgba(72,58,132,.45)`,
-        }}>💬</button>
+          width: 54, height: 54, borderRadius: "50%", border: "none",
+          cursor: "pointer", background: "var(--ink)", color: "var(--bg)",
+          fontSize: 14, fontWeight: 500, fontFamily: "inherit",
+          boxShadow: "0 10px 26px rgba(11,12,13,.22)",
+        }}>{open ? "×" : "Chat"}</button>
     </div>
   );
 }

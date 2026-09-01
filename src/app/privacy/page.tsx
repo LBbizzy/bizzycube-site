@@ -5,9 +5,9 @@ export const metadata = {
 
 export default function PrivacyPage() {
   return (
-    <main style={{maxWidth: 820, margin: "0 auto", padding: "48px 24px", fontFamily: "system-ui, -apple-system, sans-serif", color: "#1f2937", lineHeight: 1.7}}>
-      <h1 style={{fontSize: 36, fontWeight: 800, marginBottom: 8}}>Privacy Policy</h1>
-      <p style={{color: "#6b7280", marginBottom: 32}}>Last updated: June 25, 2026</p>
+    <div className="bz-wrap bz-tight"><section className="bz-sec bz-prose">
+      <h1 className="bz-serif" style={{fontSize:"clamp(32px,5vw,52px)",marginBottom:10}}>Privacy Policy</h1>
+      <p>Last updated: June 25, 2026</p>
 
       <p>This Privacy Policy describes how BizzyCube LLC (&quot;BizzyCube&quot;, &quot;we&quot;, &quot;us&quot;) collects, uses, and shares information when you use our multi-tenant SaaS platform and related services (the &quot;Service&quot;).</p>
 
@@ -25,7 +25,7 @@ export default function PrivacyPage() {
 
       <h2>4. How We Share Information</h2>
       <p>We do not sell personal information. We share information only:</p>
-      <ul style={{marginLeft: 24}}>
+      <ul>
         <li>with service providers (cloud hosting on AWS, payment processing on Stripe, email delivery, etc.) under data-processing terms;</li>
         <li>with third-party platforms you have authorized us to connect;</li>
         <li>when required by law or to protect rights, property, or safety.</li>
@@ -51,6 +51,6 @@ export default function PrivacyPage() {
 
       <h2>11. Contact</h2>
       <p>Questions about this Privacy Policy: <a href="mailto:lb@bizzycube.com">lb@bizzycube.com</a> · BizzyCube LLC, Tucson, Arizona, USA.</p>
-    </main>
+    </section></div>
   );
 }

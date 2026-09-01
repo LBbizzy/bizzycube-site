@@ -5,9 +5,9 @@ export const metadata = {
 
 export default function TermsPage() {
   return (
-    <main style={{maxWidth: 820, margin: "0 auto", padding: "48px 24px", fontFamily: "system-ui, -apple-system, sans-serif", color: "#1f2937", lineHeight: 1.7}}>
-      <h1 style={{fontSize: 36, fontWeight: 800, marginBottom: 8}}>Terms of Service</h1>
-      <p style={{color: "#6b7280", marginBottom: 32}}>Last updated: June 25, 2026</p>
+    <div className="bz-wrap bz-tight"><section className="bz-sec bz-prose">
+      <h1 className="bz-serif" style={{fontSize:"clamp(32px,5vw,52px)",marginBottom:10}}>Terms of Service</h1>
+      <p>Last updated: June 25, 2026</p>
 
       <p>These Terms of Service (&quot;Terms&quot;) govern your access to and use of the BizzyCube platform and related services (collectively, the &quot;Service&quot;) operated by BizzyCube LLC (&quot;BizzyCube&quot;, &quot;we&quot;, &quot;us&quot;).</p>
 
@@ -55,6 +55,6 @@ export default function TermsPage() {
 
       <h2>15. Contact</h2>
       <p>Questions about these Terms: <a href="mailto:lb@bizzycube.com">lb@bizzycube.com</a> · BizzyCube LLC, Tucson, Arizona, USA.</p>
-    </main>
+    </section></div>
   );
 }
