@@ -44,6 +44,15 @@ export default function LeadForm({
   messageLabel?: string;
 }) {
   const secs = useRef<HTMLInputElement>(null);
+  const bzv = useRef<HTMLInputElement>(null);
+  const bzvia = useRef<HTMLInputElement>(null);
+  useEffect(() => {
+    try {
+      if (bzv.current) bzv.current.value = localStorage.getItem("bz_v") || "";
+      const q = new URLSearchParams(window.location.search).get("via");
+      if (bzvia.current) bzvia.current.value = q || sessionStorage.getItem("bz_via") || "";
+    } catch {}
+  }, []);
   useEffect(() => {
     const t0 = Date.now();
     const tick = setInterval(() => {
@@ -58,6 +67,10 @@ export default function LeadForm({
     <form action={DOOR} method="POST" className="bz-form">
       <input type="hidden" name="t" value={token} />
       <input type="hidden" name="form_seconds" ref={secs} defaultValue="0" />
+      {/* build 198 — the counter's visitor id and our ?via= tag ride along, so
+          the person's card can say where they came from before they wrote in. */}
+      <input type="hidden" name="bz_v" ref={bzv} defaultValue="" />
+      <input type="hidden" name="bz_via" ref={bzvia} defaultValue="" />
       {/* the honeypot — hidden from people, not from robots */}
       <div aria-hidden="true" style={{ position: "absolute", left: "-9999px" }}>
         <label htmlFor="website_url">Leave this empty</label>

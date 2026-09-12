@@ -101,7 +101,9 @@ export default function DJChatBubble() {
     try {
       if (!vt) {
         try { window.__bzTrack?.("chat"); } catch {}
-        const d = await post("/chat/start", { t: SITE_TOKEN, message: mine });
+        let bzv = "", bzvia = "";
+        try { bzv = localStorage.getItem("bz_v") || ""; bzvia = new URLSearchParams(window.location.search).get("via") || sessionStorage.getItem("bz_via") || ""; } catch {}
+        const d = await post("/chat/start", { t: SITE_TOKEN, message: mine, v: bzv, via: bzvia });
         const list: Msg[] = d.messages || [];
         setVt(d.vt); setMsgs(list);
         if (d.thinking) await awaitReply(d.vt, list.length);
