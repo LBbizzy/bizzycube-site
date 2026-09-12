@@ -19,6 +19,7 @@ export default function Footer() {
           <span style={{ display: "flex", gap: 18, flexWrap: "wrap" }}>
             <Link href="/contact">Contact</Link>
             <Link href="/about">About</Link>
+            <Link href="/blog">Blog</Link>
             <Link href="/privacy">Privacy</Link>
             <Link href="/terms">Terms</Link>
             <a href="https://app.bizzycube.com">Sign in</a>
