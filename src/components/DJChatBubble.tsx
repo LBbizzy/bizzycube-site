@@ -100,6 +100,7 @@ export default function DJChatBubble() {
     setErr(""); setBusy(true); setDraft(""); setSlow(false);
     try {
       if (!vt) {
+        try { window.__bzTrack?.("chat"); } catch {}
         const d = await post("/chat/start", { t: SITE_TOKEN, message: mine });
         const list: Msg[] = d.messages || [];
         setVt(d.vt); setMsgs(list);

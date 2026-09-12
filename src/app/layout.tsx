@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DJChatBubble from "@/components/DJChatBubble";
+import Counter from "@/components/Counter";
 
 /* The title and description say what a visitor gets, in the words they'd use
  * about their own week. They no longer say "AI workforce" or count how many
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
         <Footer />
         <DJChatBubble />
+        <Counter />
       </body>
     </html>
   );
