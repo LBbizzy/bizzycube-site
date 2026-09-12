@@ -20,7 +20,27 @@ export type Post = {
   body: string;
   published_at: string;
   updated_at: string;
+  image?: string;
 };
+
+/* Text → pieces, with links made clickable. The writer puts addresses in
+ * plain words ("bizzycube.com/missed-calls", "https://…"); a reader should be
+ * able to tap them. Only http(s) and our own bare domain are linked. */
+export type Piece = { t: "text"; s: string } | { t: "link"; s: string; href: string };
+const LINK_RE = /(https?:\/\/[^\s)]+|(?:^|(?<=\s|\())bizzycube\.com(?:\/[^\s).,]*)?)/g;
+export function pieces(text: string): Piece[] {
+  const out: Piece[] = [];
+  let i = 0;
+  for (const m of text.matchAll(LINK_RE)) {
+    const start = m.index ?? 0;
+    if (start > i) out.push({ t: "text", s: text.slice(i, start) });
+    const raw = m[0].replace(/[.,]$/, "");
+    out.push({ t: "link", s: raw, href: raw.startsWith("http") ? raw : `https://${raw}` });
+    i = start + raw.length;
+  }
+  if (i < text.length) out.push({ t: "text", s: text.slice(i) });
+  return out;
+}
 
 async function feed(params = ""): Promise<Post[]> {
   const res = await fetch(`${FEED}?t=${SITE_TOKEN}${params}`, {

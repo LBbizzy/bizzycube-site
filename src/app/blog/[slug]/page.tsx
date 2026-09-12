@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import LeadForm from "@/components/LeadForm";
-import { getPost, listPosts, paragraphs, dateWords, excerpt, SITE_TOKEN } from "@/lib/blog";
+import { getPost, listPosts, paragraphs, pieces, dateWords, excerpt, SITE_TOKEN } from "@/lib/blog";
 
 export const revalidate = 300;
 
@@ -34,13 +34,23 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         }}>
           {post.title}
         </h1>
+        {post.image ? (
+          <img src={post.image} alt="" loading="eager"
+               style={{ display: "block", width: "100%", maxWidth: 760, aspectRatio: "1 / 1",
+                        objectFit: "cover", borderRadius: 14, marginTop: 34 }} />
+        ) : null}
         <div style={{ maxWidth: "62ch", marginTop: 30 }}>
           {paras.map((p, i) => {
             const head = p.match(/^\*\*(.+)\*\*$/) || p.match(/^#+\s*(.+)$/);
             return head ? (
               <h2 key={i} className="bz-serif" style={{ fontSize: "clamp(22px,2.6vw,28px)", margin: "1.6em 0 .5em" }}>{head[1]}</h2>
             ) : (
-              <p key={i} style={{ fontSize: 18.5, lineHeight: 1.6, margin: "0 0 1.2em" }}>{p.replace(/\*\*/g, "")}</p>
+              <p key={i} style={{ fontSize: 18.5, lineHeight: 1.6, margin: "0 0 1.2em" }}>
+                {pieces(p.replace(/\*\*/g, "")).map((x, j) =>
+                  x.t === "link"
+                    ? <a key={j} href={x.href} style={{ color: "var(--accent)" }}>{x.s}</a>
+                    : <span key={j}>{x.s}</span>)}
+              </p>
             );
           })}
         </div>

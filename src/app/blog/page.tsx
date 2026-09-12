@@ -36,7 +36,8 @@ export default async function Page() {
         ) : (
           <div style={{ marginTop: 56, display: "grid", gap: 36, maxWidth: "62ch" }}>
             {posts.map((p) => (
-              <article key={p.slug}>
+              <article key={p.slug} style={{ display: "grid", gridTemplateColumns: p.image ? "minmax(0,1fr) 148px" : "1fr", gap: 22, alignItems: "start" }}>
+                <div>
                 <p className="bz-kicker">{dateWords(p.published_at)}</p>
                 <h2 className="bz-serif" style={{ fontSize: "clamp(24px,3vw,32px)", margin: "8px 0 10px" }}>
                   <Link href={`/blog/${p.slug}`} style={{ color: "inherit", textDecoration: "none" }}>
@@ -51,6 +52,13 @@ export default async function Page() {
                     Read it →
                   </Link>
                 </p>
+                </div>
+                {p.image ? (
+                  <Link href={`/blog/${p.slug}`} aria-hidden tabIndex={-1}>
+                    <img src={p.image} alt="" loading="lazy"
+                         style={{ width: 148, height: 148, objectFit: "cover", borderRadius: 10, display: "block" }} />
+                  </Link>
+                ) : null}
               </article>
             ))}
           </div>
