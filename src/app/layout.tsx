@@ -14,6 +14,11 @@ export const metadata: Metadata = {
   description:
     "Somebody answers the phone, chases the quote and sends the bill — for businesses where the owner is also the front desk.",
   metadataBase: new URL("https://bizzycube.com"),
+  // The BizzyCube mark in the tab and on the phone home screen — not Vercel's triangle.
+  icons: {
+    icon: [{ url: "/favicon.ico", sizes: "any" }, { url: "/icon.png", type: "image/png", sizes: "32x32" }],
+    apple: "/apple-icon.png",
+  },
   openGraph: {
     title: "BizzyCube",
     description:
@@ -21,6 +26,7 @@ export const metadata: Metadata = {
     url: "https://bizzycube.com",
     siteName: "BizzyCube",
     type: "website",
+    images: [{ url: "/og-image.png", width: 1024, height: 1024, alt: "BizzyCube" }],
   },
 };
 
