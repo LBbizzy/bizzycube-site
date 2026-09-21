@@ -22,7 +22,7 @@ a{color:#1E3A8A}
 <body>
 <div class="card">
 <h1>Sign up for SMS updates</h1>
-<p class="sub">Stay in the loop on your BizzyCube or client appointment. Optional &mdash; only if you want it.</p>
+<p class="sub">Get customer-care texts from BizzyCube. Optional &mdash; only if you want it.</p>
 
 <form id="form" onsubmit="handleSubmit(event)">
 <label for="name">Your name</label>
@@ -38,9 +38,9 @@ a{color:#1E3A8A}
 <div class="consent-row">
 <input type="checkbox" id="sms_consent" name="sms_consent">
 <label for="sms_consent">
-<strong>I agree to receive SMS messages from BizzyCube and its agency clients (such as Universal Roofing LLC or Crest Air LLC) about appointment confirmations, appointment reminders the day before and 2 hours before scheduled service, and customer-service replies to questions I send.</strong>
+<strong>I agree to receive customer-care text messages from BizzyCube LLC at the number above, including replies to my questions, appointment confirmations and reminders, and account notifications.</strong>
 <br><br>
-Message frequency varies based on my interactions; typically 2&ndash;5 messages per appointment. Message and data rates may apply. I can reply STOP at any time to opt out, or HELP for more info.
+Message frequency varies based on my interactions; typically 1&ndash;5 messages per conversation or appointment. Message and data rates may apply. I can reply STOP at any time to opt out, or HELP for more info.
 <br><br>
 I understand SMS consent is <strong>NOT required</strong> to receive any service or product. By checking this box, I confirm I am opting in to receive SMS at the phone number I provided above.
 <br><br>
@@ -57,9 +57,7 @@ I understand SMS consent is <strong>NOT required</strong> to receive any service
 Reply STOP at any time to opt out, HELP for info.
 </div>
 
-<p class="note">
-<strong>Why this form?</strong> Some BizzyCube agency clients (Universal Roofing, Crest Air, etc.) use SMS for appointment confirmations and reminders. If you'd like to receive those texts about a service you booked, sign up here. Otherwise, you can complete any service with us by phone or email without ever giving SMS consent. SMS consent is never a condition of receiving service.
-</p>
+<p class="note">SMS consent is never a condition of any purchase or service. No mobile information will be shared with third parties or affiliates for marketing or promotional purposes. Reply STOP to opt out, HELP for help.</p>
 </div>
 
 <script>
@@ -83,10 +81,10 @@ async function handleSubmit(e) {
       form.style.display = 'none';
       document.getElementById('success').style.display = 'block';
     } else {
-      alert('Submission failed. Please try again or call us at (520) 724-0000.');
+      alert('Submission failed. Please try again or call us at (520) 594-0664.');
     }
   } catch(err) {
-    alert('Submission failed. Please try again or call us at (520) 724-0000.');
+    alert('Submission failed. Please try again or call us at (520) 594-0664.');
   }
 }
 </script>
