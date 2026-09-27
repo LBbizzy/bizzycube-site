@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DJChatBubble from "@/components/DJChatBubble";
 import Counter from "@/components/Counter";
+import { ld, ORG, PRODUCT, SITE } from "@/lib/seo";
 
 /* The title and description say what a visitor gets, in the words they'd use
  * about their own week. They no longer say "AI workforce" or count how many
@@ -14,6 +15,8 @@ export const metadata: Metadata = {
   description:
     "Somebody answers the phone, chases the quote and sends the bill — for businesses where the owner is also the front desk.",
   metadataBase: new URL("https://bizzycube.com"),
+  // every page names itself as the one true address (no ?via= duplicates)
+  alternates: { canonical: "./" },
   // The BizzyCube mark in the tab and on the phone home screen — not Vercel's triangle.
   icons: {
     icon: [{ url: "/favicon.ico", sizes: "any" }, { url: "/icon.png", type: "image/png", sizes: "32x32" }],
@@ -40,6 +43,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&display=swap"
         />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(
+          ORG, PRODUCT, { "@type": "WebSite", "@id": `${SITE}/#site`, url: SITE, name: "BizzyCube",
+                          publisher: { "@id": `${SITE}/#org` } }) }} />
       </head>
       <body>
         <Header />

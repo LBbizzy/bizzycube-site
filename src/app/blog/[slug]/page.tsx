@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import LeadForm from "@/components/LeadForm";
+import { ld, ORG, SITE } from "@/lib/seo";
 import { getPost, listPosts, paragraphs, pieces, dateWords, excerpt, SITE_TOKEN } from "@/lib/blog";
 
 export const revalidate = 300;
@@ -24,6 +25,12 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const paras = paragraphs(post.body);
   return (
     <div className="bz-wrap bz-tight">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld({
+        "@type": "BlogPosting", headline: post.title, description: excerpt(post.body, 155),
+        datePublished: post.published_at, dateModified: post.updated_at || post.published_at,
+        url: `${SITE}/blog/${post.slug}`, mainEntityOfPage: `${SITE}/blog/${post.slug}`,
+        ...(post.image ? { image: post.image } : {}),
+        author: { "@id": `${SITE}/#org` }, publisher: ORG }) }} />
       <section className="bz-sec">
         <p className="bz-kicker">
           <Link href="/blog" style={{ color: "inherit", textDecoration: "none" }}>Blog</Link>

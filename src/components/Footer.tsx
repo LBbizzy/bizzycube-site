@@ -20,6 +20,7 @@ export default function Footer() {
             <Link href="/contact">Contact</Link>
             <Link href="/about">About</Link>
             <Link href="/blog">Blog</Link>
+            <Link href="/for-your-trade">By trade</Link>
             <Link href="/privacy">Privacy</Link>
             <Link href="/terms">Terms</Link>
             <a href="https://app.bizzycube.com">Sign in</a>

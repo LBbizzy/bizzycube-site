@@ -1,5 +1,6 @@
 import LeadForm from "./LeadForm";
 import type { Funnel } from "@/lib/funnels";
+import { ld, faq, webPage, ORG, PRODUCT } from "@/lib/seo";
 
 /* One landing page, rendered from one funnel's data.
  *
@@ -10,6 +11,10 @@ import type { Funnel } from "@/lib/funnels";
 export default function FunnelPage({ f }: { f: Funnel }) {
   return (
     <div className="bz-wrap bz-tight">
+      {/* what this page is, for search engines and AI answers — its own
+          questions and answers become a FAQ they can quote */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(
+        webPage(`/${f.slug}`, f.title, f.description), faq([...f.checks, ...(f.more ?? [])]), ORG, PRODUCT) }} />
       <section className="bz-sec">
         <p className="bz-kicker">{f.kicker}</p>
         <h1 className="bz-serif" style={{
