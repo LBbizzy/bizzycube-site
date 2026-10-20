@@ -1,0 +1,100 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Support — HomeScan</title><meta name="description" content="Support for HomeScan, an app by Bizzy Cube LLC."><meta name="theme-color" content="#0A0A0C">
+<link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="icon-32.png"><link rel="icon" type="image/png" sizes="192x192" href="icon-192.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="Support — HomeScan"><meta property="og:description" content="Support for HomeScan, an app by Bizzy Cube LLC."><meta property="og:image" content="https://gethomescan.com/og.png"><meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A0A0C;--raise:#141418;--raise2:#1C1C22;--ink:#F6F5F0;--muted:#A3A2AB;--line:#26262E;
+--a1:#FFC53D;--a1ink:#0A0A0C;--a2:#E5242B;--a3:#60A5FA;--glow:rgba(255,197,61,.30);
+--head:'Archivo',system-ui,sans-serif;--sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;--r:18px;color-scheme:dark}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
+h1,h2,h3{font-family:var(--head);margin:0;line-height:1.05;letter-spacing:-.02em;text-wrap:balance}
+p{margin:0 0 14px}.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+:focus-visible{outline:2px solid var(--a1);outline-offset:3px}
+.nav{position:sticky;top:0;z-index:20;background:rgba(10,10,12,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:22px;height:66px}
+.brand{display:flex;align-items:center;gap:10px;font:800 19px var(--head)}.brand img{width:40px;height:40px;object-fit:contain}
+.links{display:flex;gap:22px;margin-left:auto;font-size:14.5px;color:var(--muted)}.links a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:700;font-size:15px;background:var(--a1);color:var(--a1ink);border:0;cursor:pointer;white-space:nowrap}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}.btn:hover{filter:brightness(1.06)}
+.navcta{padding:9px 16px;font-size:14px}
+@media(max-width:860px){.links{display:none}.navcta{margin-left:auto}}
+.hero{position:relative;padding:72px 0 40px;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:-20% -10% auto;height:680px;background:radial-gradient(closest-side,var(--glow),transparent 70%);opacity:.55;pointer-events:none}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;position:relative}
+.kicker{display:inline-flex;align-items:center;gap:8px;font:700 12.5px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--a1);background:color-mix(in srgb,var(--a1) 12%,transparent);border:1px solid color-mix(in srgb,var(--a1) 35%,transparent);padding:7px 12px;border-radius:999px}
+.hero h1{font-size:clamp(42px,6.4vw,82px);margin:18px 0 18px;font-weight:900}
+.hero h1 em{font-style:normal;color:var(--a1)}
+.lead{font-size:clamp(17px,1.6vw,20px);color:#D6D5DC;max-width:560px}
+.stores{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 10px}
+.store{display:flex;align-items:center;gap:10px;background:#000;border:1.5px solid #3A3A44;border-radius:14px;padding:9px 16px 9px 12px;min-width:184px}
+.store svg{width:26px;height:26px;flex:none}.store small{display:block;font-size:10.5px;color:var(--muted);letter-spacing:.04em}.store b{font:700 17px var(--head);display:block;line-height:1.1}
+.soon{display:inline-block;font:800 10px var(--sans);letter-spacing:.1em;text-transform:uppercase;background:var(--a2);color:#fff;border-radius:6px;padding:3px 7px;margin-left:6px;vertical-align:2px}
+.fine{font-size:13px;color:var(--muted)}
+.phones{position:relative;height:620px}
+.phone{position:absolute;width:255px;border-radius:38px;padding:9px;background:#1b1b20;box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1.5px #33333c inset}
+.phone img{border-radius:30px;width:100%}
+.phone.p1{left:6%;top:30px;transform:rotate(-6deg);z-index:2}.phone.p2{right:4%;top:0;transform:rotate(5deg)}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.phones{height:460px}.phone{width:200px}.phone.p1{left:8%}.phone.p2{right:8%}}
+@media(max-width:480px){.phones{height:380px}.phone{width:165px}.phone.p1{left:0}.phone.p2{right:0}}
+section{padding:84px 0}.sec-h{max-width:760px;margin-bottom:38px}
+.sec-h h2{font-size:clamp(32px,4.4vw,54px);font-weight:900}.sec-h p{color:var(--muted);font-size:18px;margin-top:14px}
+.eyebrow{font:800 12.5px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--a1);margin-bottom:12px;display:block}
+.band{background:var(--raise);border-block:1px solid var(--line)}
+.grid{display:grid;gap:16px}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:980px){.g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.g4,.g3,.g2{grid-template-columns:1fr}}
+.card{background:var(--raise2);border:1px solid var(--line);border-radius:var(--r);padding:22px;position:relative}
+.band .card{background:var(--bg)}
+.card h3{font-size:19px;margin:12px 0 8px;font-weight:800}.card p{color:var(--muted);font-size:15px;margin:0}
+.ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:color-mix(in srgb,var(--c,var(--a1)) 16%,transparent);border:1px solid color-mix(in srgb,var(--c,var(--a1)) 40%,transparent)}
+.tag{position:absolute;top:18px;right:18px;font:800 10px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:3px 7px}
+.tag.free{color:#4ADE80;border-color:#1f5f3a}
+.who{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+@media(max-width:1080px){.who{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.who{grid-template-columns:1fr}}
+.who .card{padding:24px;border-top:4px solid var(--c)}.who h3{font-size:22px}.who ul{margin:14px 0 0;padding:0;list-style:none;font-size:14.5px;color:#D6D5DC}
+.who li{padding:6px 0 6px 24px;position:relative;border-top:1px solid var(--line)}.who li:before{content:"✓";position:absolute;left:2px;color:var(--c);font-weight:800}
+.plan-best{font:800 11px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--c);margin-top:16px}
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:stretch}
+@media(max-width:1080px){.plans{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.plans{grid-template-columns:1fr}}
+.plan{background:var(--raise2);border:1px solid var(--line);border-radius:22px;padding:26px;display:flex;flex-direction:column}
+.band .plan{background:var(--bg)}
+.plan.hot{border:2px solid var(--a1);box-shadow:0 0 0 6px color-mix(in srgb,var(--a1) 10%,transparent)}
+.badge{align-self:flex-start;font:900 13px var(--head);letter-spacing:.14em;padding:6px 12px;border-radius:8px;background:var(--pc);color:var(--pci,#000)}
+.plan .price{font:900 40px var(--head);margin:16px 0 2px}.plan .price small{font:600 15px var(--sans);color:var(--muted)}
+.plan .for{color:var(--muted);font-size:14.5px;min-height:44px}.plan ul{list-style:none;padding:0;margin:16px 0 22px;font-size:14.5px;flex:1}
+.plan li{padding:7px 0 7px 24px;position:relative;border-top:1px solid var(--line)}.plan li:before{content:"✓";position:absolute;left:2px;color:var(--a1);font-weight:800}
+.plan .btn{justify-content:center}
+.strip{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 18px}
+.strip figure{flex:0 0 250px;margin:0;scroll-snap-align:start}.strip img{border-radius:28px;border:1.5px solid var(--line)}.strip figcaption{font-size:14px;color:var(--muted);margin-top:10px;text-align:center}
+.steps{counter-reset:s}.steps .card:before{counter-increment:s;content:counter(s);font:900 46px var(--head);color:var(--a1);line-height:1}
+.faq details{border-top:1px solid var(--line);padding:18px 0}.faq summary{cursor:pointer;font:700 18px var(--head);list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary:after{content:"+";color:var(--a1);font-size:24px;line-height:1}.faq details[open] summary:after{content:"–"}.faq details p{color:var(--muted);margin:12px 0 0;max-width:760px}
+.cta{text-align:center;padding:90px 0;position:relative;overflow:hidden}
+.cta:before{content:"";position:absolute;inset:0;background:radial-gradient(closest-side,var(--glow),transparent 70%);opacity:.45}
+.cta .wrap{position:relative}.cta h2{font-size:clamp(34px,5vw,64px);font-weight:900}.cta p{color:var(--muted);font-size:18px;margin:14px auto 26px;max-width:560px}
+.cta .stores{justify-content:center}
+.foot{border-top:1px solid var(--line);padding:46px 0 34px;font-size:14px;color:var(--muted)}
+.foot .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px}.foot h4{font:800 13px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin:0 0 12px}
+.foot a{display:block;padding:3px 0}.foot a:hover{color:var(--ink)}.foot .legal{border-top:1px solid var(--line);margin-top:30px;padding-top:20px;display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between}
+.foot address{font-style:normal;line-height:1.7}
+@media(max-width:820px){.foot .cols{grid-template-columns:1fr 1fr}}
+.doc{max-width:780px;margin:0 auto;padding:56px 20px 80px}.doc h1{font-size:clamp(34px,5vw,52px);font-weight:900;margin-bottom:8px}
+.doc .meta{color:var(--muted);margin-bottom:34px}.doc h2{font-size:22px;margin:34px 0 10px;font-weight:800}.doc p,.doc li{color:#D6D5DC}.doc ul{padding-left:20px}.doc li{margin:6px 0}
+.doc a{color:var(--a1);text-decoration:underline;text-underline-offset:3px}
+.contact-box{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0}@media(max-width:700px){.contact-box{grid-template-columns:1fr}}
+@media(max-width:1080px){.who[style]{grid-template-columns:repeat(2,1fr)!important}}@media(max-width:560px){.who[style]{grid-template-columns:1fr!important}}
+@media(max-width:480px){.mock{font-size:10.5px!important;padding:16px 10px!important}}
+.burst{position:absolute;width:120px;height:120px;background:var(--a1);clip-path:polygon(50% 0,61% 30%,95% 15%,72% 42%,100% 58%,68% 62%,79% 98%,52% 72%,25% 96%,33% 63%,0 55%,30% 40%,8% 12%,40% 28%);opacity:.12}
+</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "HomeScan", "operatingSystem": "iOS, Android", "applicationCategory": "LifestyleApplication", "publisher": {"@type": "Organization", "name": "Bizzy Cube LLC", "url": "https://bizzycube.com", "address": {"@type": "PostalAddress", "streetAddress": "115 E Plata St", "addressLocality": "Tucson", "addressRegion": "AZ", "postalCode": "85705", "addressCountry": "US"}, "email": "support@bizzycube.com", "telephone": "+18337258858"}}</script></head><body>
+<header class="nav"><div class="wrap"><a class="brand" href="index.html"><img src="logo.png" alt="HomeScan logo" width="40" height="40">HomeScan</a>
+<nav class="links"><a href="index.html#tools">What’s inside</a><a href="index.html#who">Who it’s for</a><a href="index.html#plans">Plans</a><a href="index.html#faq">FAQ</a><a href="support.html">Support</a></nav><a class="btn navcta" href="index.html#get">Get the app</a></div></header>
+<main><article class="doc"><h1>Support</h1><p class="meta">We’re real people in Tucson, Arizona. Here’s how to reach us.</p><div class="contact-box"><div class="card"><div class="ico">✉️</div><h3>Email</h3><p><a href="mailto:support@bizzycube.com">support@bizzycube.com</a><br>We answer within one business day.</p></div><div class="card"><div class="ico">📞</div><h3>Phone</h3><p><a href="tel:+18337258858">(833) 725-8858</a><br>Answered 24/7.</p></div><div class="card"><div class="ico">📍</div><h3>Mail</h3><p>Bizzy Cube LLC<br>115 E Plata St<br>Tucson, AZ 85705</p></div></div><h2>Billing</h2><p>Bought on iPhone: iPhone Settings › your name › Subscriptions. Bought on Android: Google Play › Payments & subscriptions.</p><h2>Delete your account</h2><p>See <a href="delete-account.html">how to delete your account</a>.</p></article></main>
+<footer class="foot"><div class="wrap"><div class="cols"><div><a class="brand" href="index.html" style="padding:0;margin-bottom:12px"><img src="logo.png" alt="" width="40" height="40">HomeScan</a>
+<p>Your AI home pro — fix it, design it, remodel it, and keep every document for the project.</p><p>HomeScan is an app by <a href="https://bizzycube.com" style="display:inline;color:var(--ink);text-decoration:underline">Bizzy Cube LLC</a>.</p></div><div><h4>App</h4><a href="index.html#tools">What’s inside</a><a href="index.html#who">Who it’s for</a><a href="index.html#plans">Plans</a><a href="index.html#faq">FAQ</a></div><div><h4>Help</h4><a href="support.html">Support</a><a href="delete-account.html">Delete account</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div><div><h4>Company</h4><a href="https://bizzycube.com">Bizzy Cube LLC</a><a href="https://bizzycube.com/apps">Our apps</a><a href="https://zapphobby.com">ZappHobby</a></div></div>
+<div class="legal"><address>© 2026 Bizzy Cube LLC · 115 E Plata St, Tucson, AZ 85705 · <a style="display:inline" href="mailto:support@bizzycube.com">support@bizzycube.com</a> · <a style="display:inline" href="tel:+18337258858">(833) 725-8858</a></address>
+<span><a style="display:inline" href="privacy.html">Privacy</a> · <a style="display:inline" href="terms.html">Terms</a> · <a style="display:inline" href="support.html">Support</a> · <a style="display:inline" href="delete-account.html">Delete account</a></span></div></div></footer>
+</body></html>
