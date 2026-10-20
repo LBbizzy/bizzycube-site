@@ -207,6 +207,30 @@ export default function HomePage() {
       </div>
 
       <div className="bz-wrap">
+        <section className="bz-sec" id="our-apps" style={{ paddingBottom: 0 }}>
+          <div className="bz-head">
+            <p className="bz-kicker">Our apps</p>
+            <h2 className="bz-serif">Built on BizzyCube, for one kind of customer.</h2>
+            <p>The same engine behind the front desk, packaged as focused apps. Both coming soon to iPhone and Android.</p>
+          </div>
+          <div className="bz-apps" style={{ gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", marginTop: 0 }}>
+            <a href="https://zapphobby.com" className="bz-app" style={{ ["--tint" as string]: "#FFE32A" }}>
+              <div className="bz-app-top" style={{ gridTemplateColumns: "56px 1fr" }}>
+                <img src="/apps/zapphobby.png" alt="ZappHobby logo" width={56} height={56} className="bz-app-logo" style={{ width: 56, height: 56 }} />
+                <div><h3 className="bz-app-name" style={{ fontSize: 28 }}>ZappHobby</h3><p className="bz-app-line">Scan, price and sell cards, comics and sealed.</p></div>
+              </div>
+              <p className="bz-app-pow" style={{ marginTop: 18 }}>Visit zapphobby.com →</p>
+            </a>
+            <a href="https://gethomescan.com" className="bz-app" style={{ ["--tint" as string]: "#FFC53D" }}>
+              <div className="bz-app-top" style={{ gridTemplateColumns: "56px 1fr" }}>
+                <img src="/apps/homescan.png" alt="HomeScan logo" width={56} height={56} className="bz-app-logo" style={{ width: 56, height: 56 }} />
+                <div><h3 className="bz-app-name" style={{ fontSize: 28 }}>HomeScan</h3><p className="bz-app-line">Your AI home pro: fix, design and remodel.</p></div>
+              </div>
+              <p className="bz-app-pow" style={{ marginTop: 18 }}>Visit the HomeScan site →</p>
+            </a>
+          </div>
+          <p className="bz-under"><Link href="/apps" style={{ textDecoration: "underline" }}>More about our apps</Link></p>
+        </section>
         <section className="bz-close">
           <h2 className="bz-serif">
             Fifteen minutes. We&apos;ll show you where it&apos;s leaking.

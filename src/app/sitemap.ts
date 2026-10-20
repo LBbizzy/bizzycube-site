@@ -12,7 +12,7 @@ export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
-  const fixed = ["", "/about", "/contact", "/blog", "/privacy", "/terms"].map((p) => ({
+  const fixed = ["", "/about", "/contact", "/blog", "/privacy", "/terms", "/apps", "/support"].map((p) => ({
     url: `${SITE}${p}`, lastModified: now, changeFrequency: "weekly" as const, priority: p === "" ? 1 : 0.5,
   }));
   const needs = await listNeeds().catch(() => []);
