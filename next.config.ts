@@ -7,6 +7,7 @@ const APP_SITES: { host: string; dir: string }[] = [
   { host: "(www\\.)?zapphobby\\.com", dir: "zapphobby" },
   { host: "(www\\.)?gethomescan\\.com", dir: "homescan" },
   { host: "construction\\.bizzy180\\.com", dir: "construction" },   // Bizzy180 Construction (platform build 678)
+  { host: "roofing\\.bizzy180\\.com", dir: "roofing" },             // Bizzy180 Roofing (platform build 679)
 ];
 
 const nextConfig: NextConfig = {
