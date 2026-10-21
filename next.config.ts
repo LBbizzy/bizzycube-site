@@ -1,11 +1,12 @@
 import type { NextConfig } from "next";
 
-/* One Vercel project serves three sites. bizzycube.com is this Next app;
+/* One Vercel project serves the parent company's sites. bizzycube.com is this Next app;
  * zapphobby.com and the HomeScan domain are static sites in public/sites/,
  * picked by the visitor's host. Clean URLs: /privacy → privacy.html. */
 const APP_SITES: { host: string; dir: string }[] = [
   { host: "(www\\.)?zapphobby\\.com", dir: "zapphobby" },
   { host: "(www\\.)?gethomescan\\.com", dir: "homescan" },
+  { host: "construction\\.bizzy180\\.com", dir: "construction" },   // Bizzy180 Construction (platform build 678)
 ];
 
 const nextConfig: NextConfig = {
