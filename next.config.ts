@@ -10,6 +10,11 @@ const APP_SITES: { host: string; dir: string }[] = [
   { host: "roofing\\.bizzy180\\.com", dir: "roofing" },             // Bizzy180 Roofing (platform build 679)
   { host: "hvac\\.bizzy180\\.com", dir: "hvac" },                   // Bizzy180 HVAC (platform build 680)
   { host: "realestate\\.bizzy180\\.com", dir: "realestate" },       // Bizzy180 Real Estate (platform build 681)
+  { host: "plumbing\\.bizzy180\\.com", dir: "plumbing" },   // Bizzy180 (platform build 682)
+  { host: "electrical\\.bizzy180\\.com", dir: "electrical" },   // Bizzy180 (platform build 682)
+  { host: "medspa\\.bizzy180\\.com", dir: "medspa" },   // Bizzy180 (platform build 682)
+  { host: "chiro\\.bizzy180\\.com", dir: "chiro" },   // Bizzy180 (platform build 682)
+  { host: "homeinspection\\.bizzy180\\.com", dir: "homeinspection" },   // Bizzy180 (platform build 682)
 ];
 
 const nextConfig: NextConfig = {
