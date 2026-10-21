@@ -9,6 +9,7 @@ const APP_SITES: { host: string; dir: string }[] = [
   { host: "construction\\.bizzy180\\.com", dir: "construction" },   // Bizzy180 Construction (platform build 678)
   { host: "roofing\\.bizzy180\\.com", dir: "roofing" },             // Bizzy180 Roofing (platform build 679)
   { host: "hvac\\.bizzy180\\.com", dir: "hvac" },                   // Bizzy180 HVAC (platform build 680)
+  { host: "realestate\\.bizzy180\\.com", dir: "realestate" },       // Bizzy180 Real Estate (platform build 681)
 ];
 
 const nextConfig: NextConfig = {
