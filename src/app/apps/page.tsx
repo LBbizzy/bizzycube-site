@@ -43,6 +43,19 @@ const APPS = [
   },
 ];
 
+/* Bizzy180 — the business app, one website per trade (each its own site on bizzy180.com). */
+const BIZZY180 = [
+  ["Construction", "construction", "Contractors and remodelers"],
+  ["Roofing", "roofing", "Roofing companies"],
+  ["HVAC", "hvac", "Heating and cooling"],
+  ["Plumbing", "plumbing", "Plumbing companies"],
+  ["Electrical", "electrical", "Electrical contractors"],
+  ["Real Estate", "realestate", "Agents, teams and brokerages"],
+  ["Med Spa", "medspa", "Med spas and aesthetics"],
+  ["Chiropractic", "chiro", "Chiropractic offices"],
+  ["Home Inspection", "homeinspection", "Home inspectors"],
+];
+
 export default function Page() {
   return (
     <div className="bz-wrap bz-tight">
@@ -81,8 +94,32 @@ export default function Page() {
           ))}
         </div>
 
+        <article className="bz-app" style={{ ["--tint" as string]: "#12A89A", marginTop: 22 }}>
+          <div className="bz-app-top">
+            <div className="bz-app-logo" style={{ display: "grid", placeItems: "center", background: "#0F2A4A", color: "#fff", fontWeight: 900, fontSize: 34 }}>B</div>
+            <div>
+              <h2 className="bz-app-name">Bizzy180</h2>
+              <p className="bz-app-line">The system that runs a business — built separately for each trade.</p>
+            </div>
+            <span className="bz-app-soon">Coming soon</span>
+          </div>
+          <p className="bz-app-body">
+            Calls answered, the work on one board, the money collected — and the Circle of Life that brings every
+            customer back. Each trade has its own Bizzy180 and its own website:
+          </p>
+          <ul className="bz-app-points">
+            {BIZZY180.map(([name, sub, who]) => (
+              <li key={sub}><a href={`https://${sub}.bizzy180.com`} style={{ textDecoration: "underline" }}>Bizzy180 {name}</a> — {who}</li>
+            ))}
+          </ul>
+          <div className="bz-app-foot">
+            <span className="bz-app-pow">Powered by BizzyCube</span>
+            <a href="https://bizzy180.com" className="bz-btn">Visit Bizzy180 →</a>
+          </div>
+        </article>
+
         <p className="bz-under" style={{ marginTop: 40 }}>
-          ZappHobby and HomeScan are published by Bizzy Cube LLC, 115 E Plata St, Tucson, AZ 85705.
+          ZappHobby, HomeScan and Bizzy180 are published by Bizzy Cube LLC, 115 E Plata St, Tucson, AZ 85705.
           Questions about any of our apps: <a href="mailto:support@bizzycube.com" style={{ textDecoration: "underline" }}>support@bizzycube.com</a>{" "}
           or <Link href="/support" style={{ textDecoration: "underline" }}>Support</Link>.
         </p>
