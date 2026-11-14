@@ -87,7 +87,21 @@ export default function LeadForm({
 
       <label className="bz-label" htmlFor="lf-phone">Phone</label>
       <input id="lf-phone" className="bz-field" name="phone" type="tel"
-             autoComplete="tel" />
+             autoComplete="tel" aria-describedby="lf-sms-consent" />
+      {/* The texting consent, right at the phone box where the carriers (and
+          the person) expect it. Optional field, so giving a number is the
+          opt-in; the words match Terms §5 and Privacy §3. */}
+      <p id="lf-sms-consent" className="bz-fine" data-testid="sms-consent"
+         style={{ marginTop: 8 }}>
+        Optional. By giving us your mobile number you agree that BizzyCube may
+        text you at that number about your request: replies, scheduling and
+        follow-up. Message frequency varies. Message and data rates may apply.
+        Reply STOP to stop or HELP for help. Consent is not a condition of any
+        purchase. We never sell or share your number for marketing. See our{" "}
+        <a href="/privacy" style={{ color: "var(--accent)" }}>Privacy Policy</a>{" "}
+        and{" "}
+        <a href="/terms" style={{ color: "var(--accent)" }}>Terms</a>.
+      </p>
 
       <label className="bz-label" htmlFor="lf-email">Email</label>
       <input id="lf-email" className="bz-field" name="email" type="email"

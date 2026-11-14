@@ -29,7 +29,7 @@ export default function PrivacyPage() {
 <p><strong>Cost.</strong> Message and data rates may apply. Your mobile carrier&apos;s standard rates apply to every message you send or receive; BizzyCube does not charge you for the messages themselves.</p>
 <p><strong>How to stop.</strong> Reply <strong>STOP</strong> to any message to opt out at any time. You will receive one confirmation and no further messages. Reply <strong>START</strong> to opt back in. Reply <strong>HELP</strong> for help, or email <a href="mailto:lb@bizzycube.com">lb@bizzycube.com</a> or call (833) 725-8858.</p>
 <p><strong>Carriers.</strong> Carriers are not liable for delayed or undelivered messages. Delivery is not guaranteed and can be affected by your carrier, device, and coverage.</p>
-<p><strong>Your mobile information is never sold or shared for marketing.</strong> No mobile information — including your phone number and your consent to be texted — will be sold, rented, or shared with third parties or affiliates for marketing or promotional purposes. Text messaging originator opt-in data and consent are excluded from every category of information sharing described in Section 6 of this Policy and are not shared with any third party. We disclose your mobile number only to the communications providers that carry the message on our behalf (for example Twilio), strictly so the message can be delivered to you, and only under contracts that forbid them from using it for their own purposes.</p>
+<p><strong>Your mobile information is never sold or shared for marketing.</strong> No mobile information — including your phone number and your consent to be texted — will be sold, rented, or shared with third parties or affiliates for marketing or promotional purposes. Text messaging originator opt-in data and consent are excluded from every category of information sharing described in Section 6 of this Policy and are not shared with any third party. We disclose your mobile number only to the communications providers that carry the message on our behalf (for example Telnyx and Twilio), strictly so the message can be delivered to you, and only under contracts that forbid them from using it for their own purposes.</p>
 
 <h2>4. Google User Data and Limited Use</h2>
 <p>If you choose to connect a Google account to the Service, we request only the access needed for the features you have switched on, and we tell you which those are before you approve them:</p>
@@ -47,7 +47,7 @@ export default function PrivacyPage() {
 <h2>6. How We Share Information</h2>
 <p><strong>We do not sell personal information</strong>, and we do not share it for cross-context behavioral advertising. We share information only:</p>
 <ul>
-<li>with service providers who process it on our behalf under written data-processing terms — cloud hosting (Amazon Web Services), payment processing (Stripe), telephony and messaging delivery (Twilio), email delivery (Mailgun), and electronic signature (DocuSign);</li>
+<li>with service providers who process it on our behalf under written data-processing terms — cloud hosting (Amazon Web Services), payment processing (Stripe), telephony and messaging delivery (Telnyx and Twilio), email delivery (Mailgun), and electronic signature (DocuSign);</li>
 <li>with third-party platforms you have specifically authorized us to connect;</li>
 <li>when required by law, or to protect the rights, property, or safety of BizzyCube, our customers, or the public;</li>
 <li>in connection with a merger, acquisition, or sale of assets, with notice to you.</li>
